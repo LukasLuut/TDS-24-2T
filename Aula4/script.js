@@ -7,8 +7,12 @@ Nomes: Vitor Reis e Lucas Silva 	Turma: TDS24-2T
 
 -----------------------Funcionalidade----------------------------
 
-O código deve receber um valor de entrada representando a temperatura em graus celsius, 
+O código deve receber um valor de entrada representando a temperatura em graus celsius,
 processar os valores convertendo para graus fahrenheit e apresentar os dados na tela.
+
+O código deve receber um valor associado a temperatura em CElSIUS através do prompt, converter 
+em NUMBER e associar a uma var, após isso deve aplicar a operação matemática de converção para 
+FAHRENHEIT e apresentar na tela com comando ALERT.
 
 
 ----------------------------Testes----------------------------
@@ -55,8 +59,7 @@ Analise os resultados: O resultado do teste saiu como esperado, convertendo o va
 para fahrenheit
 */
 
-var cel = prompt("temperatura Celsius: ")
-celN=Number(cel)
-far=(celN)*(9/5)+32 
-alert(far.toFixed(2)+"ºF") 
+var cel = Number(prompt("temperatura Celsius: "))
+far=((cel)*(9/5)+32).toFixed(2) 
+alert(far+"ºF") 
 
