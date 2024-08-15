@@ -10,7 +10,7 @@ Nomes: Vitor Reis e Lucas Silva 	Turma: TDS24-2T
 O código deve receber um valor de entrada representando a temperatura em graus celsius,
 processar os valores convertendo para graus fahrenheit e apresentar os dados na tela.
 
-O código deve receber um valor associado a temperatura em CElSIUS através do prompt, converter 
+O código recebe um valor associado a temperatura em CElSIUS através do PROMPT, converter 
 em NUMBER e associar a uma var, após isso deve aplicar a operação matemática de converção para 
 FAHRENHEIT e apresentar na tela com comando ALERT.
 
