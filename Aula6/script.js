@@ -1,7 +1,5 @@
 //-------------AULA 6-Operadores Aritiméticos-------------------
 /*
-
-
 ---SOMA
 const primeiroValor=10
 const segundoValor=20
@@ -89,4 +87,21 @@ console.log(condicao)---true
 2>=2-true
 3>=2-true
 
+1<2-true
+2<2-false
+3<2-false 
 
+1<=2-true
+2<=2-true
+3<=2-false
+*/
+
+//------------EXERCÍCIOS----------
+
+let a=prompt("type a number:")
+let b=prompt("type another number:")
+
+console.log(`The first number is equal the second?${a===b}`)
+console.log(`The first number is different the second?${a!==b}`)
+console.log(`The first number is bigger than second??${a>b}`)
+console.log(`The first number is smaller than second??${a<b}`)
