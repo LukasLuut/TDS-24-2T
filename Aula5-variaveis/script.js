@@ -58,8 +58,8 @@ let res3=prompt(perg3)
 
 console.log(perg1, res1, "\n", perg2, res2, "\n", perg3, res3)
 */
-//----------------------------------------------------------------------------------------
-
+//
+/*
 let a=10
 let b=25
 
@@ -70,3 +70,11 @@ a=a2
 
 
 console.log(a,b)
+
+----------------------------------------------------------------------------------------
+
+
+let number1=Number(prompt("type a number:"))
+let number2=Number(prompt("type another number:"))
+
+console.log(number1+number2, number1*number2)*/
