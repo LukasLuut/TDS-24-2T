@@ -97,11 +97,12 @@ console.log(condicao)---true
 */
 
 //------------EXERCÍCIOS----------
-
+/*
 let a=prompt("type a number:")
 let b=prompt("type another number:")
 
 console.log(`The first number is equal the second?${a===b}`)
 console.log(`The first number is different the second?${a!==b}`)
 console.log(`The first number is bigger than second??${a>b}`)
-console.log(`The first number is smaller than second??${a<b}`)
+console.log(`The first number is smaller than second??${a<b}`)*/
+
