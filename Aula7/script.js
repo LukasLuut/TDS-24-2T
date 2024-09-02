@@ -39,7 +39,7 @@ let maiorIdade=idade>=18
 let idade2050=idade+26
 
 console.log(`A pessoa se chama ${nome} e tem ${idade} anos de idade.\n
-Ela é maior de idade? ${maiorIdade}\nEla terá ${idade2050} anos em 2050`)*/
+Ela é maior de idade? ${maiorIdade}\nEla terá ${idade2050} anos em 2050`)
 
 
 //------------------------------------------------------------
