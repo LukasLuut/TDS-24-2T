@@ -1,4 +1,4 @@
-alert("--------- BEM VINDO AO DISTRITO 24-2T --------")
+/*alert("--------- BEM VINDO AO DISTRITO 24-2T --------")
 
 let jogador={nome:"",vida:1,recurso:0,}
 
@@ -41,9 +41,65 @@ if(esc===1){
 
 else if(esc===2){alert("você descansa e recupera suas energias.\n\nVida+1")
     jogador.vida+=1
-
+ 
 }
 else{}}
 while(jogador.recurso<10&&jogador.vida>0)
+*//*
+//-----------------------------------------------------------------------------
+for(let i=0;i<10;i++){console.log(i)}
 
+//-----------------------------------------------------------------------------
+for(let i=0;i<20;i++){if(i%2===0){console.log(i)}}
+
+//-----------------------------------------------------------------------------
+let num= Number(prompt("digite um número:"))
+for(let i=1;i<=10;i++){
+    res=i*num
+    console.log(`${i}x${num}=${res}`)}
+
+//-----------------------------------------------------------------------------
+let soma=0
+for(let i=1;i<=5;i++){let num2=Number(prompt("digite um número"))
+    soma+=num2}
+console.log(soma)
+
+//-----------------------------------------------------------------------------
+let soma=0
+for(let i=1;i<=5;i++){let num2=Number(prompt(`Digite a nota do aluno ${i}:`))
+    soma+=num2}
+console.log(`A média das notas é ${soma/5}`)
+
+//-----------------------------------------------------------------------------*/
+let palavras=["abc"]
+let palavra=palavras[Math.floor(Math.random()*palavras.length)]
+let resposta=[]
+let respostaF=""
+let tentativas=5
+
+for(let letra of palavras){resposta.push(letra)}
+
+
+
+
+for(let i=0;i<palavra.length;i++){respostaF+="_."}//um array de caracteres '_.' do tamanho da palavra
+//for(let letra of palavra){resposta.push(letra)}
+console.log(`Palavra:${respostaF}`)
+
+alert(`Advinhe a palavra, ela tem ${palavra.length} letras`)
+
+do{    
+    let esc=prompt("Digite uma letra:")
+    tentativas--
+    if(palavra.includes(esc)){
+        for(let i=0;i<palavra.length;i++){
+            if(esc===palavra[i]){
+                resposta.splice(i,1,esc)
+                respostaF[i]=resposta[i]
+                console.log(resposta)
+                }}
+                    
+        
+    }
+}while(tentativas!==0)
 
