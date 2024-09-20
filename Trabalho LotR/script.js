@@ -113,6 +113,7 @@ while(jogador.hp>=0||inimigo.hp>=0){
             console.log(`%c Você causou ${dano} de dano com um ataque. %c `)
         }
         // se escolher utilizar habilidade especial
+        //jogador.ataque pode ser substituído por jogador.habilidades[x] que pode ser escolhido pelo jogador
         if(escolha===2){
 
             //verifica se o jogador rolou dano Crítico 
@@ -121,7 +122,8 @@ while(jogador.hp>=0||inimigo.hp>=0){
                 //se for crítico, inimigo toma o dobro de dano
                 let dano=jogador.ataque+dado()*2
                 inimigo.vida-+dano
-                console.log(`%c VOCÊ CAUSOU ${dano} DE DANO EM UM ACERTO CRÍTICO COM SUA HABILIDADE ${jogador.habilidade[1]} %c`)
+
+                console.log(`%c VOCÊ CAUSOU ${dano} DE DANO EM UM ACERTO CRÍTICO COM SUA HABILIDADE ${jogador.habilidades[1]} %c`)
             }
 
             // não sendo crítico, o inimigo toma o dano de ataque + um bonus pela habilidade 
@@ -133,20 +135,22 @@ while(jogador.hp>=0||inimigo.hp>=0){
 
         }
 
-        // se o jogador escolher defender, recebe um bonus de defesa temporário 
+        // se o jogador escolher defender, recebe um bonus de defesa temporário
         if(escolha===3){
+            //Necessário implementar lógica para efeito temporário, pensei na variável turno que foi criada a cima, mas não tenho certeza 
             jogador.defesa+=10
 
 
         }
        
     }
+    // Aqui, serão as ações do inimigo
     if(jogador.iniciativa<inimigo.iniciativa){
 }
 }}
 
 
-/*
+
 let heroi = {
     nome: "",
     classe: "",
@@ -168,6 +172,8 @@ let listaClasses = ["Mago", "Bardo"];
       `Escolha uma das classes abaixo: \n[1] Mago \n[2] Bardo \n[3] Bárbaro`
     );
     let esc = 0;
+
+    //Acho que podemos fazer essa parte usando Swith and Case de forma mais simples-Luut
     while (esc < 1 || esc > 3) {
       esc = Number(
         prompt("Qual será a classe do seu personagem? Escolha o número")
@@ -262,7 +268,8 @@ let listaClasses = ["Mago", "Bardo"];
   
   function menuPersonagens() {
     let escolha = 100;
-    while (Number(escolha) !== 1) {
+    while (Number(escolha) !== 1)// Já vi isso em algum lugar..-Luut
+        {
       escolha = Number(
         prompt(
           "[1] Ir para o jogo \n[2] Adicionar Personagens \n[3] Listar Personagens \n[4] Excluir Personagens "
@@ -304,20 +311,21 @@ let listaClasses = ["Mago", "Bardo"];
   
   escolherPersonagem()
   console.clear();
-  console.log("OLÁ, BEM VINDO AO NOSSO PEQUENO RPG ");
+  console.log("OLÁ, BEM VINDO AO NOSSO GRANDE RPG ");
   
   console.log(`[1] Começar a luta \n[2] Ver seus atributos \n[3] Trocar personagem`);
   let escolhaJogador;
+
+
   while (escolhaJogador > 0 || escolhaJogador < 5) {
     escolhaJogador = Number(
       prompt("Você encontrou Sauron, o que irá fazer? Escolha o número.")
     );
     
-    if(escolhaJogador===1){               // Aqui inicia a lógica de batalha
+    // Aqui inicia a lógica de batalha-Luut
+    if(escolhaJogador===1){               
         alert("Prepare-se para Batalha!")
-        
-
-
+    
     }
   
     if (escolhaJogador === 2) {
@@ -331,4 +339,3 @@ let listaClasses = ["Mago", "Bardo"];
   }
 
 
-*/
