@@ -1,23 +1,36 @@
-/*// Função para adicionar uma ação ao histórico
+/*
+// Função para adicionar uma ação ao histórico:
 function adicionarAcao(acao) {
-    const timestamp = new Date().toLocaleTimeString(); // Captura a hora da ação
+    
+ //new Date() pega a data e hora do computador em um array   .toLocaleTimeString() converte para uma versão menor em string
+const timestamp = new Date().toLocaleTimeString(); // Captura a hora da ação
     historico.push(`[${timestamp}] ${acao}`);
 }
 
-// Função para exibir o histórico no console
+// Função para exibir o histórico no console:
 function exibirHistorico() {
     console.log('Histórico de Ações:');
+
+    //Esse forEach eu não entendi muito bem
     historico.forEach(acao => {
         console.log(acao);
     });
 }
 
-// Exemplo de uso
+// Exemplo de uso:
 adicionarAcao('Jogador 1 rolou a iniciativa: 15');
 adicionarAcao('Jogador 2 rolou a iniciativa: 10');
 adicionarAcao('Troll atacou Jogador 1 causando 8 de dano');
 
-exibirHistorico();*/
+exibirHistorico();
+
+// Deve apresentar no log:
+Histórico de Ações:
+[12:34:56] Jogador 1 rolou a iniciativa: 15
+[12:34:57] Jogador 2 rolou a iniciativa: 10
+[12:34:58] Troll atacou Jogador 1 causando 8 de dano
+
+*/
 
 
 // Array de itens que PODEM ser implementados se der tempo 
