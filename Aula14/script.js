@@ -70,19 +70,16 @@ for(let i=1;i<=5;i++){let num2=Number(prompt(`Digite a nota do aluno ${i}:`))
     soma+=num2}
 console.log(`A média das notas é ${soma/5}`)
 
-//-----------------------------------------------------------------------------*/
-let palavras=["abc"]
+//-----------------------------------------------------------------------------*//*
+let palavras=["cafezinho"]
 let palavra=palavras[Math.floor(Math.random()*palavras.length)]
 let resposta=[]
 let respostaF=""
 let tentativas=5
 
-for(let letra of palavras){resposta.push(letra)}
+//for(let letra of palavras){resposta.push(letra)}
 
-
-
-
-for(let i=0;i<palavra.length;i++){respostaF+="_."}//um array de caracteres '_.' do tamanho da palavra
+for(let i=0;i<palavra.length;i++){respostaF+="_",resposta.push("")}//um array de caracteres '_.' do tamanho da palavra
 //for(let letra of palavra){resposta.push(letra)}
 console.log(`Palavra:${respostaF}`)
 
@@ -95,11 +92,32 @@ do{
         for(let i=0;i<palavra.length;i++){
             if(esc===palavra[i]){
                 resposta.splice(i,1,esc)
-                respostaF[i]=resposta[i]
-                console.log(resposta)
+                respostaF = resposta.join('');
+                console.log(`Palavra:${respostaF}`)
                 }}
                     
         
     }
 }while(tentativas!==0)
+
+*/
+
+    //---------------------------------------------------------------------------------
+let palavras=["cafe"]
+let palavra=palavras[Math.floor(Math.random()*palavras.length)]
+let respostaF = "_".repeat(palavra.length)
+
+
+
+
+
+let esc=prompt("digite uma letra")
+let resposta=respostaF.split('').map((letra, i)=>esc===letra?esc:letra[i])
+
+
+
+
+
+
+
 
