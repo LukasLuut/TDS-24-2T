@@ -11,7 +11,7 @@ const timestamp = new Date().toLocaleTimeString(); // Captura a hora da ação
 function exibirHistorico() {
     console.log('Histórico de Ações:');
 
-    //Esse forEach eu não entendi muito bem
+    //Esse forEach pode ser trocado por for
     historico.forEach(acao => {
         console.log(acao);
     });
@@ -69,21 +69,22 @@ let armaduras = [
 
 //Array com inimígos que devem ser derrotados 
 let inimigos = [
-    { classe: 'monstro', tipo: 'Orc', vida: 50, ataque: 10, defesa: 5 },
-    { classe: 'monstro', tipo: 'Troll', vida: 80, ataque: 15, defesa: 8 },
-    { classe: 'monstro', tipo: 'Uruk-hai', vida: 60, ataque: 12, defesa: 6 },
-    { classe: 'monstro', tipo: 'Nazgûl', vida: 60, ataque: 14, defesa: 6 },
-    { classe: 'monstro', tipo: 'Balrog', vida: 120, ataque: 20, defesa: 10 }
+    { classe: 'monstro', tipo: 'Orc', vida: 50, ataque: 10, defesa: 5, iniciativa:0, },
+    { classe: 'monstro', tipo: 'Troll', vida: 80, ataque: 15, defesa: 8, iniciativa:0, },
+    { classe: 'monstro', tipo: 'Uruk-hai', vida: 60, ataque: 12, defesa: 6, iniciativa:0, },
+    { classe: 'monstro', tipo: 'Nazgûl', vida: 60, ataque: 14, defesa: 6, iniciativa:0, },
+    { classe: 'monstro', tipo: 'Balrog', vida: 120, ataque: 20, defesa: 10, iniciativa:0, }
 ];
 
 // Função que rola um dado D20 para probabilidades 
 function dado(){Math.floor(Math.random() * 20) + 1;}
 
 //Função que verifica iniciativa antes da batalha
-function rolarIniciativa(jogador,inimigo) {
-    let dadoJogador = dado()
-    let dadoInimigo = dado()
-    return jogador.iniciativa=dadoJogador, inimigo.iniciativa=dadoInimigo;
+function rolarIniciativa(jogador,inimigo) {    
+  
+  //Realiza loop enquanto os valores forem iguais, para não ocorrer empate
+  while(jogador.iniciativa===inimigo.iniciativa){
+    jogador.iniciativa=dado(), inimigo.iniciativa=dado();}
 }
 
 //Função de batalha, talvez esteja muito grande e deva ser dividida em partes menores
@@ -93,11 +94,8 @@ function batalha(jogador,inimigo){
     rolarIniciativa(jogador,inimigo)
 
 // enquanto o jogador ou o inimigo estiverem vivos, o loop continua
-while(jogador.hp>=0||inimigo.hp>=0){
+while(jogador.hp>0||inimigo.hp>0){
 
-    // Serve para efeitos orientar temporários
-    let turno=1
-   
     // Se o jogador for mais rápido
     if(jogador.iniciativa>inimigo.iniciativa){
 
@@ -136,8 +134,13 @@ while(jogador.hp>=0||inimigo.hp>=0){
         }
 
         // se o jogador escolher defender, recebe um bonus de defesa temporário
-        if(escolha===3){
-            //Necessário implementar lógica para efeito temporário, pensei na variável turno que foi criada a cima, mas não tenho certeza 
+        if(escolha===3){if(jogador.efeitoTempo.efeito===false){
+          jogador.efeitoTempo.efeito=true
+          jogador.efeitoTempo.turnos=3
+          if(jogador.efeitoTempo.turnos<0){jogador.efeitoTempo.turnos=0}
+
+        }
+             
             jogador.defesa+=10
 
 
@@ -160,7 +163,8 @@ let heroi = {
     habilidades: "",
     ataque: 10,
     defesa: 10,
-    iniciativa:0,//criei iniciativa para decidir quem ataca primeiro, será utilizado 1x sempre que iniciar o combate
+    iniciativa:0, //criei iniciativa para decidir quem ataca primeiro, será utilizado 1x sempre que iniciar o combate-Luut
+    efeitoTempo:{efeito:false, turnos:0,}//Criei para efeito temporário da defesa, pode-se implementar outros efeitos, como buff de ataque
   };
 
 let listaHerois = [];
@@ -307,6 +311,7 @@ let listaClasses = ["Mago", "Bardo"];
     prompt("Qual dos personagens você vai usar? Escolha o número.")
   );
   seuHeroi = listaHerois[pergunta - 1];
+  return seuHeroi
   }
   
   escolherPersonagem()
@@ -335,7 +340,7 @@ let listaClasses = ["Mago", "Bardo"];
     if(escolhaJogador === 3) {
       escolherPersonagem()
     }
-    return seuHeroi
+    
   }
 
 
