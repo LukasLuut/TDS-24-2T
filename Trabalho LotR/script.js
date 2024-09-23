@@ -1,8 +1,6 @@
+let jogarNovamente = 1
 
-let jogarNovamente = 'sim'
 
-// Laço para repetir o jogo
-while(jogarNovamente === 'sim') {
 console.clear()
 
 // Função para adicionar uma ação ao histórico e apresentar no console do jogador
@@ -37,7 +35,7 @@ function rolarIniciativa(jogador, inimigo) {
 }
 //Função de batalha, está muito grande e deve ser dividida em partes menores para melhor funcionalidade e manutenção
 function batalha(jogador,inimigo){
-  let rodada = 1
+  let turno = 1
 
  // Enquanto o jogador ou o inimigo estiverem vivos, o loop continua
  while(jogador.hp>0 && inimigo.hp>0){
@@ -51,7 +49,7 @@ function batalha(jogador,inimigo){
         } else if(escolha===5){
           exibirHistorico()
         } else {
-        console.log(`RODADA Nº${rodada}`)
+        console.log(`TURNO Nº${turno}`)
         // Se escolher atacar, rola um ataque simples, dano-defesa 
         if(escolha===1){ 
 
@@ -230,6 +228,7 @@ function batalha(jogador,inimigo){
             }
    
 
+
   adicionarAcao(`HP do Jogador: ${jogador.hp}, HP do Inimigo: ${inimigo.hp}`)
 
 // Verifica quem venceu e quem foi derrotado
@@ -240,7 +239,7 @@ else if (inimigo.hp <= 0) {
   adicionarAcao('Você venceu o inimigo!');}
 
 }
-rodada += 1
+turno += 1
 
 }
 }
@@ -452,6 +451,10 @@ if (listaHerois.length === 0) {
   adicionarPersonagem();
 }
 
+// Laço para repetir o jogo
+while(jogarNovamente === 1) {
+  
+
 // Função para escolher o personagem...
 escolherPersonagem()
 
@@ -494,7 +497,9 @@ while(seuHeroi.hp > 0 && inimigo.hp > 0) {
   }
 }
 
-jogarNovamente = prompt('Deseja jogar novamente? Sim ou Não').toLowerCase()
+// Pergunta para jogar novamente
+console.log(`[1] Sim \n[2] Não`)
+jogarNovamente = Number(prompt('Deseja adentrar mais profundamente em Mordor? Digite o número'))
 }
 
 console.log('OBRIGADO POR JOGAR!')
