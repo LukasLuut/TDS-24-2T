@@ -1,71 +1,57 @@
-/*
+// Array de itens que PODEM ser implementados se der tempo 
+let armas = [
+  { classe: 'arma', tipo: 'Narsil', dano: 15 },
+  { classe: 'arma', tipo: 'Glamdring', dano: 12 },
+  { classe: 'arma', tipo: 'Orcrist', dano: 11 },
+  { classe: 'arma', tipo: 'Espada', dano: 9 },
+  { classe: 'arma', tipo: 'Adaga', dano: 6 },
+  { classe: 'arma', tipo: 'Lança', dano: 9 },
+  { classe: 'arma', tipo: 'Arco', dano: 9 },
+  { classe: 'arma', tipo: 'Machado', dano: 12 },
+  { classe: 'arma', tipo: 'Besta de Mordor', dano: 7 },
+  { classe: 'arma', tipo: 'Clava de Troll', dano: 14 },
+  { classe: 'arma', tipo: 'Foice', dano: 13 },
+  { classe: 'arma', tipo: 'Espada de Gondor', dano: 11 },
+  { classe: 'arma', tipo: 'Martelo', dano: 12 },
+  { classe: 'arma', tipo: 'Punhal', dano: 5 },
+  
+];
+let armaduras = [
+  { classe: 'armadura', tipo: 'Cota de Malha', defesa: 5 },
+  { classe: 'armadura', tipo: 'Armadura de Placas', defesa: 10 },
+  { classe: 'armadura', tipo: 'Cota de Couro', defesa: 3 },
+  { classe: 'armadura', tipo: 'Armadura de Escamas', defesa: 7 },
+  { classe: 'armadura', tipo: 'Armadura de Mitrhil', defesa: 19 },
+  { classe: 'armadura', tipo: 'Capa de Guerra', defesa: 4 },
+  { classe: 'armadura', tipo: 'Armadura de Montaria', defesa: 9 },
+  { classe: 'armadura', tipo: 'Cota de Malha Completa', defesa: 12 },
+  { classe: 'armadura', tipo: 'Armadura de Peitoral', defesa: 6 },
+  { classe: 'armadura', tipo: 'Armadura de Gondor', defesa: 11 },
+  { classe: 'armadura', tipo: 'Cota de Malha de Cavaleiro', defesa: 11 },
+  { classe: 'armadura', tipo: 'Armadura de Batalha', defesa: 10 },
+  { classe: 'armadura', tipo: 'Armadura de Gladiador', defesa: 8 }
+];
+
+
+
 // Função para adicionar uma ação ao histórico:
-function adicionarAcao(acao) {
-    
- //new Date() pega a data e hora do computador em um array   .toLocaleTimeString() converte para uma versão menor em string
-const timestamp = new Date().toLocaleTimeString(); // Captura a hora da ação
-    historico.push(`[${timestamp}] ${acao}`);
+function consoleLog(acao) {
+  console.log(acao)
+
+ //new Date() pega a data e hora do computador em um array   .toLocaleTimeString() converte para uma versão da hora mas em string
+let hora = new Date().toLocaleTimeString(); // Captura a hora da ação
+    seuHeroi.historico.push(`[${hora}] ${acao}`);
 }
 
 // Função para exibir o histórico no console:
 function exibirHistorico() {
     console.log('Histórico de Ações:');
 
-    //Esse forEach pode ser trocado por for
-    historico.forEach(acao => {
+    //foi trocado for por forEach
+    seuHeroi.historico.forEach(acao => {
         console.log(acao);
     });
 }
-
-// Exemplo de uso:
-adicionarAcao('Jogador 1 rolou a iniciativa: 15');
-adicionarAcao('Jogador 2 rolou a iniciativa: 10');
-adicionarAcao('Troll atacou Jogador 1 causando 8 de dano');
-
-exibirHistorico();
-
-// Deve apresentar no log:
-Histórico de Ações:
-[12:34:56] Jogador 1 rolou a iniciativa: 15
-[12:34:57] Jogador 2 rolou a iniciativa: 10
-[12:34:58] Troll atacou Jogador 1 causando 8 de dano
-
-*/
-
-
-// Array de itens que PODEM ser implementados se der tempo 
-let armas = [
-    { classe: 'arma', tipo: 'Narsil', dano: 15 },
-    { classe: 'arma', tipo: 'Glamdring', dano: 12 },
-    { classe: 'arma', tipo: 'Orcrist', dano: 11 },
-    { classe: 'arma', tipo: 'Espada', dano: 9 },
-    { classe: 'arma', tipo: 'Adaga', dano: 6 },
-    { classe: 'arma', tipo: 'Lança', dano: 9 },
-    { classe: 'arma', tipo: 'Arco', dano: 9 },
-    { classe: 'arma', tipo: 'Machado', dano: 12 },
-    { classe: 'arma', tipo: 'Besta de Mordor', dano: 7 },
-    { classe: 'arma', tipo: 'Clava de Troll', dano: 14 },
-    { classe: 'arma', tipo: 'Foice', dano: 13 },
-    { classe: 'arma', tipo: 'Espada de Gondor', dano: 11 },
-    { classe: 'arma', tipo: 'Martelo', dano: 12 },
-    { classe: 'arma', tipo: 'Punhal', dano: 5 },
-    
-];
-let armaduras = [
-    { classe: 'armadura', tipo: 'Cota de Malha', defesa: 5 },
-    { classe: 'armadura', tipo: 'Armadura de Placas', defesa: 10 },
-    { classe: 'armadura', tipo: 'Cota de Couro', defesa: 3 },
-    { classe: 'armadura', tipo: 'Armadura de Escamas', defesa: 7 },
-    { classe: 'armadura', tipo: 'Armadura de Mitrhil', defesa: 19 },
-    { classe: 'armadura', tipo: 'Capa de Guerra', defesa: 4 },
-    { classe: 'armadura', tipo: 'Armadura de Montaria', defesa: 9 },
-    { classe: 'armadura', tipo: 'Cota de Malha Completa', defesa: 12 },
-    { classe: 'armadura', tipo: 'Armadura de Peitoral', defesa: 6 },
-    { classe: 'armadura', tipo: 'Armadura de Gondor', defesa: 11 },
-    { classe: 'armadura', tipo: 'Cota de Malha de Cavaleiro', defesa: 11 },
-    { classe: 'armadura', tipo: 'Armadura de Batalha', defesa: 10 },
-    { classe: 'armadura', tipo: 'Armadura de Gladiador', defesa: 8 }
-];
 
 //Array com inimígos que devem ser derrotados 
 let inimigos = [
@@ -77,24 +63,26 @@ let inimigos = [
 ];
 
 // Função que rola um dado D20 para probabilidades 
-function dado(){Math.floor(Math.random() * 20) + 1;}
+function dado(){return Math.floor(Math.random() * 20) + 1;}
 
 //Função que verifica iniciativa antes da batalha
-function rolarIniciativa(jogador,inimigo) {    
-  
+function rolarIniciativa(jogador, inimigo) {    
   //Realiza loop enquanto os valores forem iguais, para não ocorrer empate
-  while(jogador.iniciativa===inimigo.iniciativa){
-    jogador.iniciativa=dado(), inimigo.iniciativa=dado();}
+  do {
+      jogador.iniciativa = dado();
+      inimigo.iniciativa = dado();
+  } while (jogador.iniciativa === inimigo.iniciativa);
 }
-
-//Função de batalha, talvez esteja muito grande e deva ser dividida em partes menores para melhor manutenção
+//Função de batalha, está muito grande e deve ser dividida em partes menores para melhor manutenção
 function batalha(jogador,inimigo){
     
-    //Verifica quem vai atacar primeiro
-    rolarIniciativa(jogador,inimigo)
+    
 
 // enquanto o jogador ou o inimigo estiverem vivos, o loop continua
 while(jogador.hp>0 && inimigo.hp>0){
+
+  //Verifica quem vai atacar
+  rolarIniciativa(jogador,inimigo)  
 
     // Se o jogador for mais rápido
   if(jogador.iniciativa>inimigo.iniciativa){
@@ -110,6 +98,7 @@ while(jogador.hp>0 && inimigo.hp>0){
             let dano=Math.max((jogador.ataque-inimigo.defesa),0)
 
              //verifica se o efeito de def do inimigo está ativo
+             //Esse efeito de tempo pode ser implementado em uma função separada, por ser usado constantemente
                if (inimigo.efeitoTempo.efeito) {
 
                 //reduz o dano recebido durante a defesa
@@ -120,13 +109,13 @@ while(jogador.hp>0 && inimigo.hp>0){
                 if (inimigo.efeitoTempo.turnos <= 0) {
                     inimigo.efeitoTempo.efeito = false;
                     inimigo.defesa -= 10;
-                    console.log("A defesa temporária do inimigo acabou.");
+                    consoleLog("A defesa temporária do inimigo acabou.");
                 }
               }
        
             // Inimigo toma o dano que sobra depois de subtrair da sua defesa
             inimigo.hp-=dano
-            console.log(`%c Você causou ${dano} de dano com um ataque. %c `)
+            consoleLog(`Você causou ${dano} de dano com um ataque. `)
           }
         
         // se escolher utilizar habilidade especial
@@ -146,15 +135,15 @@ while(jogador.hp>0 && inimigo.hp>0){
                   dano = Math.max(dano - 10, 0); 
                   inimigo.efeitoTempo.turnos--;
   
-                  //desativa o efeito quando o turnos chegar a zero
+                  //desativa o efeito quando o turno chegar a zero
                   if (inimigo.efeitoTempo.turnos <= 0) {
                       inimigo.efeitoTempo.efeito = false;
                       inimigo.defesa -= 10;
-                      console.log("A defesa temporária do inimigo acabou.");
+                      consoleLog("A defesa temporária do inimigo acabou.");
             }}
                 inimigo.hp-=dano
 
-                console.log(`%c VOCÊ CAUSOU ${dano} DE DANO EM UM ACERTO CRÍTICO COM SUA HABILIDADE ${jogador.habilidades[0]} %c`)
+                consoleLog(`VOCÊ CAUSOU ${dano} DE DANO EM UM ACERTO CRÍTICO COM SUA HABILIDADE ${jogador.habilidades[0]}`)
             }
 
             // não sendo crítico, o inimigo toma o dano de ataque + um bonus pela habilidade 
@@ -172,10 +161,10 @@ while(jogador.hp>0 && inimigo.hp>0){
                   if (inimigo.efeitoTempo.turnos <= 0) {
                       inimigo.efeitoTempo.efeito = false;
                       inimigo.defesa -= 10;
-                      console.log("A defesa temporária do inimigo acabou.");
+                      consoleLog("A defesa temporária do inimigo acabou.");
             }}
 
-                console.log(`você causou ${dano} de dano com sua habilidade`)
+                consoleLog(`você causou ${dano} de dano com sua habilidade`)
                 inimigo.hp-=dano
             }
 
@@ -190,12 +179,12 @@ while(jogador.hp>0 && inimigo.hp>0){
           jogador.efeitoTempo.turnos+=3
           jogador.defesa+=10
 
-          console.log("Você aumentou sua defesa pelos próximos 3 ataques")
+          consoleLog("Você aumentou sua defesa pelos próximos 3 ataques")
         }
 
         //se for true, adiciona +2 turnos de def
         else {jogador.efeitoTempo.turnos+=2
-          console.log("Você adicionou defesa por mais 2 ataques")
+          consoleLog("Você adicionou defesa por mais 2 ataques")
         }
       }
     
@@ -220,13 +209,13 @@ while(jogador.hp>0 && inimigo.hp>0){
             if (jogador.efeitoTempo.turnos <= 0) {
                 jogador.efeitoTempo.efeito = false;
                 jogador.defesa -= 10;
-                console.log("A defesa temporária do jogador acabou.");
+                consoleLog("A defesa temporária do jogador acabou.");
             }
         }
         //aplica o dano no hp do jogador
         jogador.hp -= dano; 
         
-        console.log(`O inimigo causou ${dano} de dano com o ataque.`);
+        consoleLog(`O inimigo causou ${dano} de dano com o ataque.`);
       }
     //se escolher usar habilidade
       if (escolhaDoInimigo === 2) {
@@ -246,7 +235,7 @@ while(jogador.hp>0 && inimigo.hp>0){
             if (jogador.efeitoTempo.turnos <= 0) {
                 jogador.efeitoTempo.efeito = false;
                 jogador.defesa -= 10;
-                console.log("A defesa temporária do jogador acabou.");
+                consoleLog("A defesa temporária do jogador acabou.");
             }
         }
       }
@@ -262,23 +251,23 @@ while(jogador.hp>0 && inimigo.hp>0){
             
             // Aumenta a defesa do inimigo
             inimigo.defesa += 10; 
-            console.log("O inimigo aumentou sua defesa pelos próximos 3 ataques.");} 
+            consoleLog("O inimigo aumentou a defesa pelos próximos 3 ataques.");} 
             
             else {
             //adiciona 2 turnos extras
             inimigo.efeitoTempo.turnos += 2; 
-            console.log("O inimigo já está defendendo! Turnos de defesa aumentados.");}
+            consoleLog("O inimigo já está defendendo! Turnos de defesa aumentados.");}
             }
    }
 
-  console.log(`HP do Jogador: ${jogador.hp}, HP do Inimigo: ${inimigo.hp}`)
+  consoleLog(`HP do Jogador: ${jogador.hp}, HP do Inimigo: ${inimigo.hp}`)
 }
 //Verifica quem venceu e quem foi derrotado
 if (jogador.hp <= 0) {
-  console.log('Você foi derrotado!');} 
+  consoleLog('Você foi derrotado!');} 
   
 else if (inimigo.hp <= 0) {
-  console.log('Você venceu o inimigo!');}
+  consoleLog('Você venceu o inimigo!');}
 
 }
 
@@ -346,7 +335,7 @@ function adicionarPersonagem() {
         ...adicionarHeroi,
         ataque: 10,
         defesa: 20,
-        habilidades: "Conjurar Chamas",
+        habilidades: "Conjurar Chamas", //Deve-se criar em objeto para adicionar nome e valor de dano da Habilidade---------------------------------------------
       };
     }
     if (adicionarHeroi.classe === "Bardo") {
@@ -481,9 +470,10 @@ let escolhaJogador = Number(
 //while (escolhaJogador > 0 || escolhaJogador < 5) {
   
   // Aqui inicia a lógica de batalha-Luut
-  if(escolhaJogador===1){               
-      alert("Prepare-se para Batalha!")
-      let inimigo=inimigos[Math.floor(Math.random() * inimigos.length-1)]
+  if(escolhaJogador===1){  
+    let inimigo=inimigos[Math.floor(Math.random() * inimigos.length)]             
+      alert(`Prepare-se para Batalha!\nVocê encontrou um ${inimigo.tipo}`)
+      
       batalha(seuHeroi,inimigo)
       // PERSONAGEM DO JOGADOR É seuHeroi
       escolhaJogador = Number(
