@@ -2,7 +2,7 @@
 PONTOS PARA CORRIGIR: 
 1. Corrigir dano da arma busca um valor aleatório e o torna fixo 
 2. Vendas na loja apresentam NaN e undefined 
-3. LevelUp não conclui SWTICH and CASE
+3. LevelUp não conclui SWTICH and CASE 
 4. Adicionar ao MENU a opção de ver itens equipados
 5. Corrigir contador negativo na vida dos inimigos
 6. Criar sistema de habilidades
