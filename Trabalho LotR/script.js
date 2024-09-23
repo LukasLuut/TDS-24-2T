@@ -1,3 +1,6 @@
+// VITOR VITALINO e LUCAS WILLIAM
+
+
 let jogarNovamente = 1
 
 
@@ -466,7 +469,7 @@ console.log("%cAtenção, você está adentrando as terras de MORDOR","font-size
 
 // Menu para iniciar a batalha
 while(seuHeroi.hp > 0 && inimigo.hp > 0) {
-  console.log(`%c[1] Começar a luta \n[2] Ver seus atributos \n[3] Trocar personagem`,"font-size: 15px;");
+  console.log(`%c[1] Começar a luta \n[2] Ver seus atributos \n[3] Trocar personagem \n[4] Mostrar Histórico`,"font-size: 15px;");
   let escolhaJogador = Number(
     prompt("Você está prestes a encontrar com o inimigo.\nO que deseja fazer?")
   );  
@@ -494,6 +497,10 @@ while(seuHeroi.hp > 0 && inimigo.hp > 0) {
 
   if(escolhaJogador === 3) {
     escolherPersonagem()
+  }
+
+  if(escolhaJogador === 4) {
+    exibirHistorico()
   }
 }
 
