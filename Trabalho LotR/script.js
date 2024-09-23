@@ -1,4 +1,3 @@
-//NOMES: VITOR VITALINO E LUCAS WILLIAM
 
 let jogarNovamente = 'sim'
 
@@ -38,7 +37,7 @@ function rolarIniciativa(jogador, inimigo) {
 }
 //Função de batalha, está muito grande e deve ser dividida em partes menores para melhor funcionalidade e manutenção
 function batalha(jogador,inimigo){
-  let turno = 1
+  let rodada = 1
 
  // Enquanto o jogador ou o inimigo estiverem vivos, o loop continua
  while(jogador.hp>0 && inimigo.hp>0){
@@ -52,7 +51,7 @@ function batalha(jogador,inimigo){
         } else if(escolha===5){
           exibirHistorico()
         } else {
-        console.log(`Turno Nº${turno}`)
+        console.log(`RODADA Nº${rodada}`)
         // Se escolher atacar, rola um ataque simples, dano-defesa 
         if(escolha===1){ 
 
@@ -241,7 +240,7 @@ else if (inimigo.hp <= 0) {
   adicionarAcao('Você venceu o inimigo!');}
 
 }
-turno += 1
+rodada += 1
 
 }
 }
@@ -495,7 +494,7 @@ while(seuHeroi.hp > 0 && inimigo.hp > 0) {
   }
 }
 
-jogarNovamente = prompt('Deseja batalhar novamente? Sim ou Não').toLowerCase()
+jogarNovamente = prompt('Deseja jogar novamente? Sim ou Não').toLowerCase()
 }
 
 console.log('OBRIGADO POR JOGAR!')
