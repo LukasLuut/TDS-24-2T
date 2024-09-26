@@ -50,6 +50,15 @@ function lvlUp(jogador){
 
 //Se sim, adiciona status permanentes ao jogador, aumenta o expMax necessário para subir novamente e zera o exp atual
       alert('Você ficou mais forte!')
+
+      console.log(
+      `      Level:${jogador.nivel}
+      Exp:${jogador.exp}/${jogador.expMax}
+      HP:${jogador.hp}/${jogador.hpMax}
+      Ataque:${jogador.ataque}
+      Defesa:${jogador.defesa}\n
+      ↓↓↓↓↓↓↓↓↓↓↓`
+      )
       jogador.expMax+=30
       jogador.exp=0
       jogador.nivel+=1
@@ -57,7 +66,14 @@ function lvlUp(jogador){
       jogador.ataque+=3
       jogador.defesa+=1
       jogador.hp=jogador.hpMax//Também restaura o HP para o máximo 
+
+      console.log(`      Level:${jogador.nivel}
+      Exp:${jogador.exp}/${jogador.expMax}
+      HP:${jogador.hp}/${jogador.hpMax}
+      Ataque:${jogador.ataque}
+      Defesa:${jogador.defesa}`)
       adicionarAcao(`Você subiu para o Nível:${jogador.nivel}`)
+
     }}
 
 // Função para adicionar uma ação ao histórico e apresentar no console do jogador
@@ -560,9 +576,10 @@ while(seuHeroi.hp > 0 && inimigo.hp > 0) {
         seuHeroi.exp+=inimigo.exp
         
         //função q verifica se o exp atingiu o necessário para upar e upa se tiver atingido
-        lvlUp(seuHeroi)
         adicionarAcao(`você recebeu ${inimigo.exp} de experiência`)
-        console.clear()
+        lvlUp(seuHeroi)
+        
+        
     }
       if(seuHeroi.hp === -100) {
         console.log('Você fugiu da batalha!')
