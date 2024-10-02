@@ -96,12 +96,13 @@ dinossauros restantes na ilha.*/
 let carnivoro='\u{1F996}'
 let herbivoro='\u{1F995}'
 let montanha1='\u{1F30B}'
-let montanha2='\u{1F5FB}'
+let montanha='\u{1F5FB}'
 let agua='\u{1F30A}'
-let floresta1='\u{1F332}'
+let floresta='\u{1F332}'
 let floresta2='\u{1F334}'
 let floresta3='\u{1F335}'
-let grama='🟩'
+let folha='\u{1F343}'
+let osso='\u{1F9B4}'
 
 
 let tabuleiro=[
@@ -117,7 +118,8 @@ let tabuleiro=[
     [0,0,0,0,0,0,0,0,0,0,]
 ]
 
-//função para decidir a posição dos navios de forma aleatória
+let pontos={herbivoros:0,carnivoros:0}
+//função para decidir a posição dos elementos de forma aleatória
 function posicaoMapa(matriz){
     matriz.forEach((linha,i)=> {
         linha.forEach((_,j)=>{
@@ -131,26 +133,15 @@ posicaoMapa(tabuleiro)
 tabuleiro.forEach((linha,i)=>{
     linha.forEach((_,j)=>{
         if(tabuleiro[i][j]===0){
-            tabuleiro[i][j]=montanha2
+            tabuleiro[i][j]=montanha
         }
 
         else if(tabuleiro[i][j]===1){
             tabuleiro[i][j]=agua
                 
         }
-        if(tabuleiro[i][j]===2){
-            let floresta=Math.floor(Math.random() *3)
-            switch(floresta){
-                case 0:
-                    tabuleiro[i][j]=floresta1
-                break
-                case 1:
-                    tabuleiro[i][j]=floresta2
-                break
-                case 2:
-                    tabuleiro[i][j]=floresta3
-                break
-            }
+        if(tabuleiro[i][j]===2||tabuleiro[i][j]===4){
+            tabuleiro[i][j]=floresta
         }
         else if(tabuleiro[i][j]===3){
             let dino=Math.floor(Math.random() *2)
@@ -164,24 +155,323 @@ tabuleiro.forEach((linha,i)=>{
             }
             
         }
-        else if(tabuleiro[i][j]===4){
-            let grama=Math.floor(Math.random() *2)
-            switch(grama){
-                case 0:
-                    tabuleiro[i][j]=floresta1
-                    break
-                case 1:
-                    tabuleiro[i][j]=floresta2
-                    break
-            }
-            
-            
-        }
     })
 })
 
 console.table(tabuleiro)
 
-function subir(matriz,i,j){
+function subir(matriz){
+    for(let i=1;i<matriz.length;i++){//deve impedir que o movimento saia para fora do limite da matriz
+        
+        for (let j = 0; j < matriz[i].length; j++) {
+            
+            //se a posição for carnívoro ou herbívoro| deve mover apenas os dinossauros
+            if(matriz[i][j]===carnivoro||matriz[i][j]===herbivoro){
 
+                //se a posição que será movido não for montanha ou água, deve mover
+                if(matriz[i-1][j]!==montanha&&matriz[i-1][j]!==agua){
+                    
+                    //acho que pode ter ficado redundante esse IF junto do IF a cima que verifica carnivoros e herbivoros
+                    if(matriz[i][j]===carnivoro){
+                       
+                        //verifica se a posição que será ocupada é um herbivoro
+                        if( matriz[i-1][j]===herbivoro){
+                           
+                            //se sim, substitui pelo carnívoro e deixa um osso para trás 
+                            matriz[i-1][j]=carnivoro
+                            matriz[i][j]=osso
+                            pontos.carnivoros+=10                            
+                        }
+                        //se houver floresta ou folha ou osso, avança 
+                        else if(matriz[i-1][j]===floresta){
+                            matriz[i-1][j]=carnivoro
+                            matriz[i][j]=floresta
+                        }
+                        else if(matriz[i-1][j]===folha){
+                            matriz[i-1][j]=carnivoro
+                            matriz[i][j]=folha
+                        }
+                        else if(matriz[i-1][j]===osso){
+                            matriz[i-1][j]=carnivoro
+                            matriz[i][j]=osso
+                        }
+                        else if(matriz[i-1][j]===carnivoro){
+                            matriz[i-1][j]=carnivoro
+                            matriz[i][j]=osso
+                            pontos.carnivoros+=10
+                        }
+                    }
+                    //se o herbívoro for para casa do carnívoro, ele morre 
+                    else if(matriz[i][j]===herbivoro){
+                        if(matriz[i-1][j]===carnivoro){
+                        matriz[i][j]=osso
+                        pontos.carnivoros+=10  
+                        }
+                        
+                        
+                        //se ele for para uma floresta, ele come e deixa uma folha
+                        else if(matriz[i-1][j]===floresta){
+                            matriz[i-1][j]=herbivoro
+                            matriz[i][j]=folha
+                            pontos.herbivoros+=10
+                        }
+                        else if(matriz[i-1][j]===osso){
+                            matriz[i-1][j]=herbivoro
+                            matriz[i][j]=osso
+                        }
+                        else if(matriz[i-1][j]===folha){
+                            matriz[i-1][j]=herbivoro
+                            matriz[i][j]=folha
+                        }
+                    }
+                }
+                
+            }
+            
+        }
+    }
+    console.clear()
+    console.table(tabuleiro)
+    console.log(`%cPONTOS:\nHerbívoros: ${pontos.herbivoros}\nCarnívoros: ${pontos.carnivoros}`,'Font-size:15px') 
 }
+
+function descer(matriz){
+    for (let i = matriz.length - 2; i >= 0; i--) {//deve impedir que o movimento saia para fora do limite da matriz
+        
+        for (let j = 0; j < matriz[i].length; j++) {
+            
+            //se a posição for carnívoro ou herbívoro| deve mover apenas os dinossauros
+            if(matriz[i][j]===carnivoro||matriz[i][j]===herbivoro){
+
+                //se a posição que será movido não for montanha ou água, deve mover
+                if(matriz[i+1][j]!==montanha&&matriz[i+1][j]!==agua){
+                    
+                    //acho que pode ter ficado redundante esse IF junto do IF a cima que verifica carnivoros e herbivoros
+                    if(matriz[i][j]===carnivoro){
+                       
+                        //verifica se a posição que será ocupada é um herbivoro
+                        if( matriz[i+1][j]===herbivoro){
+                           
+                            //se sim, substitui pelo carnívoro e deixa um osso para trás 
+                            matriz[i+1][j]=carnivoro
+                            matriz[i][j]=osso
+                            pontos.carnivoros+=10                            
+                        }
+                        //se houver floresta ou folha ou osso, avança 
+                        else if(matriz[i+1][j]===floresta){
+                            matriz[i+1][j]=carnivoro
+                            matriz[i][j]=floresta
+                        }
+                        else if(matriz[i+1][j]===folha){
+                            matriz[i+1][j]=carnivoro
+                            matriz[i][j]=folha
+                        }
+                        else if(matriz[i+1][j]===osso){
+                            matriz[i+1][j]=carnivoro
+                            matriz[i][j]=osso
+                        }
+                        else if(matriz[i+1][j]===carnivoro){
+                            matriz[i+1][j]=carnivoro
+                            matriz[i][j]=osso
+                            pontos.carnivoros+=10
+                        }
+                    }
+                    //se o herbívoro for para casa do carnívoro, ele morre 
+                    else if(matriz[i][j]===herbivoro){
+                        if(matriz[i+1][j]===carnivoro){
+                        matriz[i][j]=osso
+                        pontos.carnivoros+=10}
+                        
+                        //se ele for para uma floresta, ele come e deixa uma folha
+                        else if(matriz[i+1][j]===floresta){
+                            matriz[i+1][j]=herbivoro
+                            matriz[i][j]=folha
+                            pontos.herbivoros+=10
+                        }
+                        else if(matriz[i+1][j]===osso){
+                            matriz[i+1][j]=herbivoro
+                            matriz[i][j]=osso
+                        }
+                        else if(matriz[i+1][j]===folha){
+                            matriz[i+1][j]=herbivoro
+                            matriz[i][j]=folha
+                        }
+                    }
+                }
+                
+            }
+            
+        }
+    }
+    console.clear()
+    console.table(tabuleiro)
+    console.log(`%cPONTOS:\nHerbívoros: ${pontos.herbivoros}\nCarnívoros: ${pontos.carnivoros}`,'Font-size:15px') 
+}
+
+function esquerda(matriz){
+    for (let i = 0; i < matriz.length; i++) {//deve impedir que o movimento saia para fora do limite da matriz
+        
+        for (let j = 1; j < matriz[i].length; j++) {
+            
+            //se a posição for carnívoro ou herbívoro| deve mover apenas os dinossauros
+            if(matriz[i][j]===carnivoro||matriz[i][j]===herbivoro){
+
+                //se a posição que será movido não for montanha ou água, deve mover
+                if(matriz[i][j-1]!==montanha&&matriz[i][j-1]!==agua){
+                    
+                    //acho que pode ter ficado redundante esse IF junto do IF a cima que verifica carnivoros e herbivoros
+                    if(matriz[i][j]===carnivoro){
+                       
+                        //verifica se a posição que será ocupada é um herbivoro
+                        if( matriz[i][j-1]===herbivoro){
+                           
+                            //se sim, substitui pelo carnívoro e deixa um osso para trás 
+                            matriz[i][j-1]=carnivoro
+                            matriz[i][j]=osso 
+                            pontos.carnivoros+=10                           
+                        }
+                        //se houver floresta ou folha ou osso, avança 
+                        else if(matriz[i][j-1]===floresta){
+                            matriz[i][j-1]=carnivoro
+                            matriz[i][j]=floresta
+                        }
+                        else if(matriz[i][j-1]===folha){
+                            matriz[i][j-1]=carnivoro
+                            matriz[i][j]=folha
+                        }
+                        else if(matriz[i][j-1]===osso){
+                            matriz[i][j-1]=carnivoro
+                            matriz[i][j]=osso
+                        }
+                        else if(matriz[i][j-1]===carnivoro){
+                            matriz[i][j-1]=carnivoro
+                            matriz[i][j]=osso
+                            pontos.carnivoros+=10
+                        }
+                    }
+                    //se o herbívoro for para casa do carnívoro, ele morre 
+                    else if(matriz[i][j]===herbivoro){
+                        if(matriz[i][j-1]===carnivoro){
+                        matriz[i][j]=osso
+                        pontos.carnivoros+=10}
+                        
+                        //se ele for para uma floresta, ele come e deixa uma folha
+                        else if(matriz[i][j-1]===floresta){
+                            matriz[i][j-1]=herbivoro
+                            matriz[i][j]=folha
+                            pontos.herbivoros+=10
+                        }
+                        else if(matriz[i][j-1]===osso){
+                            matriz[i][j-1]=herbivoro
+                            matriz[i][j]=osso
+                        }
+                        else if(matriz[i][j-1]===folha){
+                            matriz[i][j-1]=herbivoro
+                            matriz[i][j]=folha
+                        }
+                    }
+                }
+                
+            }
+            
+        }
+    }
+    console.clear()
+    console.table(tabuleiro)
+    console.log(`%cPONTOS:\nHerbívoros: ${pontos.herbivoros}\nCarnívoros: ${pontos.carnivoros}`,'Font-size:15px') 
+}
+
+function direita(matriz){
+    for (let i = 0; i < matriz.length; i++) {//deve impedir que o movimento saia para fora do limite da matriz
+        
+        for (let j = matriz[i].length - 2; j >= 0; j--) {
+            
+            //se a posição for carnívoro ou herbívoro| deve mover apenas os dinossauros
+            if(matriz[i][j]===carnivoro||matriz[i][j]===herbivoro){
+
+                //se a posição que será movido não for montanha ou água, deve mover
+                if(matriz[i][j+1]!==montanha&&matriz[i][j+1]!==agua){
+                    
+                    //acho que pode ter ficado redundante esse IF junto do IF a cima que verifica carnivoros e herbivoros
+                    if(matriz[i][j]===carnivoro){
+                       
+                        //verifica se a posição que será ocupada é um herbivoro
+                        if( matriz[i][j+1]===herbivoro){
+                           
+                            //se sim, substitui pelo carnívoro e deixa um osso para trás 
+                            matriz[i][j+1]=carnivoro
+                            matriz[i][j]=osso
+                            pontos.carnivoros+=10                            
+                        }
+                        //se houver floresta ou folha ou osso, avança 
+                        else if(matriz[i][j+1]===floresta){
+                            matriz[i][j+1]=carnivoro
+                            matriz[i][j]=floresta
+                        }
+                        else if(matriz[i][j+1]===folha){
+                            matriz[i][j+1]=carnivoro
+                            matriz[i][j]=folha
+                        }
+                        else if(matriz[i][j+1]===osso){
+                            matriz[i][j+1]=carnivoro
+                            matriz[i][j]=osso
+                        }
+                        else if(matriz[i][j+1]===carnivoro){
+                            matriz[i][j+1]=carnivoro
+                            matriz[i][j]=osso
+                            pontos.carnivoros+=10
+                        }
+                    }
+                    //se o herbívoro for para casa do carnívoro, ele morre 
+                    else if(matriz[i][j]===herbivoro){
+                        if(matriz[i][j+1]===carnivoro){
+                        matriz[i][j]=osso
+                        pontos.carnivoros+=10}
+                        
+                        //se ele for para uma floresta, ele come e deixa uma folha
+                        else if(matriz[i][j+1]===floresta){
+                            matriz[i][j+1]=herbivoro
+                            matriz[i][j]=folha
+                            pontos.herbivoros+=10
+                        }
+                        else if(matriz[i][j+1]===osso){
+                            matriz[i][j+1]=herbivoro
+                            matriz[i][j]=osso
+                        }
+                        else if(matriz[i][j+1]===folha){
+                            matriz[i][j+1]=herbivoro
+                            matriz[i][j]=folha
+                        }
+                    }
+                }
+                
+            }
+            
+        }
+    }
+    console.clear()
+    console.table(tabuleiro)
+    console.log(`%cPONTOS:\nHerbívoros: ${pontos.herbivoros}\nCarnívoros: ${pontos.carnivoros}`,'Font-size:15px') 
+}
+'\n'
+console.log(`%cPONTOS:\nHerbívoros: ${pontos.herbivoros}\nCarnívoros: ${pontos.carnivoros}`,'Font-size:15px')
+
+//adicionado ação das funções pelas teclas do teclado
+addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case 'ArrowDown':
+            descer(tabuleiro);
+            break;
+        case 'ArrowUp':
+            subir(tabuleiro);
+            break;
+        case 'ArrowLeft':
+            esquerda(tabuleiro);
+            break;
+        case 'ArrowRight':
+            direita(tabuleiro);
+            break;
+    }
+    console.clear()
+    console.table(tabuleiro)
+    console.log(`%cPONTOS:\nHerbívoros: ${pontos.herbivoros}\nCarnívoros: ${pontos.carnivoros}`,'Font-size:15px')})
