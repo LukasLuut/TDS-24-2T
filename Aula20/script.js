@@ -62,7 +62,7 @@ matriz4[1][2]=1
     
     criarGraficoDeCalor(matrizNumeros);
 */
-    let matriz5=[
+    /*let matriz5=[
         [1,2,3,4,],
         [5,6,7,8,],
         [9,10,11,12],
@@ -81,7 +81,7 @@ matriz4[1][2]=1
 
     percorreMatriz(matriz5)
 
-
+*/
 
     /*criar uma matriz de 10x10
     preencher com alguns navios, podem ser representados pelo número 1
@@ -90,6 +90,9 @@ matriz4[1][2]=1
 
 
     */
+    const navio = '\u{1F6A2}';
+    const agua= '~~';
+    const onda= '\u{1F30A}'
 
     let tabuleiro=[
         [0,0,0,0,0,0,0,0,0,0,],
@@ -104,12 +107,12 @@ matriz4[1][2]=1
         [0,0,0,0,0,0,0,0,0,0,]
     ]
 
-//rever forEach para entender melhor a lógica por tráz da sintaxe
+    //função para decidir a posição dos navios de forma aleatória
     function posicaoNavio(matriz){
         matriz.forEach((linha,i)=> {
             linha.forEach((_,j)=>{
                 if(Math.floor(Math.random() * 20)>13){
-                    tabuleiro[i][j]=1
+                    tabuleiro[i][j]= 1
                 }
             }
         )
@@ -117,9 +120,42 @@ matriz4[1][2]=1
         });
     }
     posicaoNavio(tabuleiro)
-    console.log(tabuleiro)
 
+// Matriz apenas para exibição-Estudar melhor a iteração de map dentro de map
+let matrizExibicao = tabuleiro.map(linha => linha.map(coluna => agua));
 
-    function verificarNavio(matriz){
+//apresentação da matriz utilizando table
+console.table(matrizExibicao)
+alert("PREPARE-SE PARA BATALHA\nO primeiro número se refere a linha horizontal\nO segundo número se refere a coluna vertical")
 
-    }
+//loop para 5 tentativas
+for(let i=0;i<5;i++){
+
+    let esc1=Number(prompt('Qual linha horizontal?'))
+    let esc2=Number(prompt('Qual coluna vertical?'))
+
+    //condição para acerto
+    if(tabuleiro[esc1][esc2]===1){
+    
+        console.clear();
+        tabuleiro[esc1][esc2]=navio//deve mudar a posição no tabuleiro para verificar acerto na mesma coordenada
+        matrizExibicao[esc1][esc2]=navio//atualiza o table para visualização do usuário
+        console.table(matrizExibicao)
+        alert("Você acertou um navio")
+}
+else if(
+    //verifica se o local já foi acertado antes e adiciona +1 tentativa
+    tabuleiro[esc1][esc2]===navio||tabuleiro[esc1][esc2]===onda){
+    console.clear();
+    console.table(matrizExibicao)
+    alert('você já atirou nessas coordenadas, tente novamente!')
+    i--
+}
+else{
+    //tiro na agua e atualização da matriz de apresentação
+    console.clear();
+    tabuleiro[esc1][esc2]=onda
+    matrizExibicao[esc1][esc2]=onda
+    console.table(matrizExibicao)
+    alert("tiro na água")
+}}

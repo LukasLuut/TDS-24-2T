@@ -58,14 +58,14 @@ c) Agora veja se essa idade do usuário corresponde à idade mínima que permite
 dirigir. Se sim, imprima no console `"Você pode dirigir"`, caso contrário, imprima
 `"Você não pode dirigir."`*/
 
-
+/*
 let idade=Number(prompt('qual sua idade?'))
 
 if(idade>=18){
     console.log('você pode digirir')
 }
 else{console.log('você não tem idade suficiente para dirigir')}
-
+*/
 
 //--------------------------------------------------------------------------------------
 
@@ -76,7 +76,7 @@ mensagem "Bom Dia!", "Boa Tarde!" ou "Boa Noite!". Utilize o bloco if/else
 
 6. Repita o exercício anterior, mas utilizando a estrutura de switch case agora.*/
 
-
+/*
 let turno=prompt('qual turno você estuda?\n[M]-Matutino\n[V]-Vespertino\n[N]-Noturno')
 
 if(turno==='M'){
@@ -100,7 +100,7 @@ switch(turno){
     case 'N':
         console.log('Boa noite')
 }
-
+*/
 //--------------------------------------------------------------------------------------
 
 
@@ -113,10 +113,121 @@ então verifique se seu amigo ou amiga vai topar assistir o filme. Caso positivo
 imprima no console a mensagem: "Bom filme!", caso contrário, imprima "Escolha
 outro filme :("*/
 
-
+/*
 let genero=promt('Qual o gênero do filme?')
 let ingresso=Number(prompt('qual o valor do ingresso?'))
-if(genero.toLocaleLowerCase ==='fantasia'||ingresso<=15){
+if(genero.toLocaleLowerCase ==='fantasia'&& ingresso<15){
 console.log('Bom filme')
 }
 else{console.log('escolha outro filme')}
+*/
+//-----------------------------------------------------------------------------------------
+
+/*1. Modifique o código do exercício 7 de escrita de código para, antes de imprimir
+a mensagem "Bom filme!", pergunte ao usuário, pelo prompt qual lanchinho ele
+vai comprar (pipoca, chocolate, doces, etc) e imprima no console as mensagens
+"Bom filme!" e "Aproveite o seu [LANCHINHO]", trocando [LANCHINHO] pelo
+que o usuário colocou no input.*/
+
+
+/*
+let genero=promt('Qual o gênero do filme?')
+let ingresso=Number(prompt('qual o valor do ingresso?'))
+if(genero.toLocaleLowerCase ==='fantasia'&& ingresso<15){
+    let lanche=prompt('o que você vai comprar?\n[1]-pipoca\n[2]-chocolate\n[3]-doces')
+    switch(lanche){
+        case '1':
+            console.log(`aproveite sua pipoca`)
+            break
+        case '2': 
+        console.log(`aproveite seu chocolate`)
+            break
+        case '3':
+            console.log(`aproveite seu doce`)
+            break
+    }
+console.log('Bom filme')
+}
+else{console.log('escolha outro filme')}
+*/
+//-------------------------------------------------------------------------------------------------------------------
+
+/*Você foi contratado para criar um sistema de vendas de ingressos de jogos de
+um estádio de futebol. Para esta compra, o usuário deve fornecer algumas
+informações:
+Nome completo; Tipo de jogo: IN indica internacional e DO indica doméstico;
+Etapa do jogo: SF indica semi-final; DT indica decisão de terceiro lugar; e FI
+
+indica final. Categoria: pode ser as opções 1, 2, 3 ou 4;
+Quantidade de ingressos*/
+
+
+let usuario={
+    nome:'',
+    tipo:'',
+    etapa:'',
+    categoria:0,
+    quantidade:0,
+    valor:0
+}
+
+
+let tabela=[
+    {Jogo:'SF-Semifinais', categoria1:1320, categoria2:880, categoria3:550,categoria4:220},
+    {Jogo:'DT-Decisão 3ºlugar', categoria1:660 , categoria2:440, categoria3:330,categoria4:170},
+    {Jogo:'FI-Final', categoria1:1980, categoria2:1320, categoria3:880,categoria4:330},
+    ]
+usuario.nome=prompt('Como você se chama?')
+usuario.tipo=prompt('Qual o tipo de jogo?\nIN indica internacional e DO indica doméstico.')
+console.table(tabela)
+usuario.etapa=prompt('Qual etapa do jogo?\nSF indica semi-final\nDT indica decisão de terceiro lugar\nFI indica final.')
+usuario.categoria=Number(prompt('Qual a categoria do ingresso?\n1, 2, 3 ou 4'))
+usuario.quantidade=Number(prompt('Quantos ingressos você vai querer?'))
+
+switch(usuario.etapa){
+    case 'sf':
+        if(usuario.categoria===1){
+        usuario.valor=(usuario.quantidade*tabela[0].categoria1)/5.65
+        }
+        else if(usuario.categoria===2){
+            usuario.valor=(usuario.quantidade*tabela[0].categoria2)/5.65
+        }
+        else if(usuario.categoria===3){
+            usuario.valor=(usuario.quantidade*tabela[0].categoria3)/5.65
+        }
+        else if(usuario.categoria===4){
+            usuario.valor=(usuario.quantidade*tabela[0].categoria4)/5.65
+        }
+    break
+    case 'dt':
+        if(usuario.categoria===1){
+            usuario.valor=(usuario.quantidade*tabela[1].categoria1)/5.65
+            }
+            else if(usuario.categoria===2){
+                usuario.valor=(usuario.quantidade*tabela[1].categoria2)/5.65
+            }
+            else if(usuario.categoria===3){
+                usuario.valor=(usuario.quantidade*tabela[1].categoria3)/5.65
+            }
+            else if(usuario.categoria===4){
+                usuario.valor=(usuario.quantidade*tabela[1].categoria4)/5.65
+            }
+        break
+        case 'fi':
+        if(usuario.categoria===1){
+            usuario.valor=(usuario.quantidade*tabela[2].categoria1)/5.65
+            }
+            else if(usuario.categoria===2){
+                usuario.valor=(usuario.quantidade*tabela[2].categoria2)/5.65
+            }
+            else if(usuario.categoria===3){
+                usuario.valor=(usuario.quantidade*tabela[2].categoria3)/5.65
+            }
+            else if(usuario.categoria===4){
+                usuario.valor=(usuario.quantidade*tabela[2].categoria4)/5.65
+            }
+        break
+}
+
+alert(`Pedido de:${usuario.nome}.\nTipo de jogo: ${usuario.tipo}\nEtapa: ${usuario.etapa}\nCategoria: ${usuario.categoria}\n
+Ingressos: ${usuario.quantidade}\nTotal: U$${usuario.valor.toFixed(2)}`)
