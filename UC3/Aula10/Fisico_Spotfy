@@ -5,7 +5,7 @@ CREATE TABLE User (
     User_Name string(80),
     Adress string(80),
     Email string(80),
-    Password string(80)
+    Password string(8)
 );
 
 CREATE TABLE Content (
@@ -54,14 +54,14 @@ CREATE TABLE Guest (
 );
 
 CREATE TABLE Free (
-    Ad Boolean,
-    Limited_Playlist Boolean,
+    Ad BOOLEAN,
+    Limited_Playlist BOOLEAN,
     fk_User_ID_User number(3) PRIMARY KEY
 );
 
 CREATE TABLE Premium (
-    Skip_Track Boolean,
-    No_Ad Boolean,
+    Skip_Track BOOLEAN,
+    No_Ad BOOLEAN,
     fk_User_ID_User number(3) PRIMARY KEY
 );
 
@@ -83,6 +83,11 @@ CREATE TABLE Has (
 CREATE TABLE Has (
     fk_PodCast_fk_Content_ID_Content number(3),
     fk_Guest_ID_Guest number(3)
+);
+
+CREATE TABLE Listen (
+    fk_User_ID_User number(3),
+    fk_Playlist_ID_Playlist number(3)
 );
  
 ALTER TABLE News ADD CONSTRAINT FK_News_2
@@ -162,3 +167,13 @@ ALTER TABLE Has ADD CONSTRAINT FK_Has_2
     FOREIGN KEY (fk_Guest_ID_Guest)
     REFERENCES Guest (ID_Guest)
     ON DELETE SET NULL;
+ 
+ALTER TABLE Listen ADD CONSTRAINT FK_Listen_1
+    FOREIGN KEY (fk_User_ID_User)
+    REFERENCES User (ID_User)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Listen ADD CONSTRAINT FK_Listen_2
+    FOREIGN KEY (fk_Playlist_ID_Playlist)
+    REFERENCES Playlist (ID_Playlist)
+    ON DELETE RESTRICT;
