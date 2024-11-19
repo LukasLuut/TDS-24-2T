@@ -1,0 +1,164 @@
+/* Lógico_1: */
+
+CREATE TABLE User (
+    ID_User number(3) PRIMARY KEY,
+    User_Name string(80),
+    Adress string(80),
+    Email string(80),
+    Password string(80)
+);
+
+CREATE TABLE Content (
+    Title string(80),
+    Duration number(5),
+    ID_Content number(3) PRIMARY KEY
+);
+
+CREATE TABLE Playlist (
+    Track string(80),
+    Time number(5),
+    ID_Playlist number(3) PRIMARY KEY
+);
+
+CREATE TABLE Artist (
+    ID_Artist number(3) PRIMARY KEY,
+    Artist_Name string(80)
+);
+
+CREATE TABLE Album (
+    ID_Album number(3) PRIMARY KEY,
+    Title_Album string(80)
+);
+
+CREATE TABLE News (
+    fk_Content_ID_Content number(3) PRIMARY KEY
+);
+
+CREATE TABLE Music (
+    fk_Content_ID_Content number(3) PRIMARY KEY,
+    fk_Album_ID_Album number(3)
+);
+
+CREATE TABLE PodCast (
+    fk_Content_ID_Content number(3) PRIMARY KEY
+);
+
+CREATE TABLE Rating_Listened (
+    fk_User_ID_User number(3),
+    fk_Content_ID_Content number(3)
+);
+
+CREATE TABLE Guest (
+    ID_Guest number(3) PRIMARY KEY,
+    Guest_Name string(80)
+);
+
+CREATE TABLE Free (
+    Ad Boolean,
+    Limited_Playlist Boolean,
+    fk_User_ID_User number(3) PRIMARY KEY
+);
+
+CREATE TABLE Premium (
+    Skip_Track Boolean,
+    No_Ad Boolean,
+    fk_User_ID_User number(3) PRIMARY KEY
+);
+
+CREATE TABLE Create (
+    fk_User_ID_User number(3),
+    fk_Playlist_ID_Playlist number(3)
+);
+
+CREATE TABLE Create (
+    fk_Artist_ID_Artist number(3),
+    fk_Content_ID_Content number(3)
+);
+
+CREATE TABLE Has (
+    fk_Playlist_ID_Playlist number(3),
+    fk_Content_ID_Content number(3)
+);
+
+CREATE TABLE Has (
+    fk_PodCast_fk_Content_ID_Content number(3),
+    fk_Guest_ID_Guest number(3)
+);
+ 
+ALTER TABLE News ADD CONSTRAINT FK_News_2
+    FOREIGN KEY (fk_Content_ID_Content)
+    REFERENCES Content (ID_Content)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Music ADD CONSTRAINT FK_Music_2
+    FOREIGN KEY (fk_Content_ID_Content)
+    REFERENCES Content (ID_Content)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Music ADD CONSTRAINT FK_Music_3
+    FOREIGN KEY (fk_Album_ID_Album)
+    REFERENCES Album (ID_Album)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE PodCast ADD CONSTRAINT FK_PodCast_2
+    FOREIGN KEY (fk_Content_ID_Content)
+    REFERENCES Content (ID_Content)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Rating_Listened ADD CONSTRAINT FK_Rating_Listened_1
+    FOREIGN KEY (fk_User_ID_User)
+    REFERENCES User (ID_User);
+ 
+ALTER TABLE Rating_Listened ADD CONSTRAINT FK_Rating_Listened_2
+    FOREIGN KEY (fk_Content_ID_Content)
+    REFERENCES Content (ID_Content);
+ 
+ALTER TABLE Free ADD CONSTRAINT FK_Free_2
+    FOREIGN KEY (fk_User_ID_User)
+    REFERENCES User (ID_User)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Premium ADD CONSTRAINT FK_Premium_2
+    FOREIGN KEY (fk_User_ID_User)
+    REFERENCES User (ID_User)
+    ON DELETE CASCADE;
+ 
+ALTER TABLE Create ADD CONSTRAINT FK_Create_1
+    FOREIGN KEY (fk_User_ID_User)
+    REFERENCES User (ID_User)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Create ADD CONSTRAINT FK_Create_2
+    FOREIGN KEY (fk_Playlist_ID_Playlist)
+    REFERENCES Playlist (ID_Playlist)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE Create ADD CONSTRAINT FK_Create_1
+    FOREIGN KEY (fk_Artist_ID_Artist)
+    REFERENCES Artist (ID_Artist)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Create ADD CONSTRAINT FK_Create_2
+    FOREIGN KEY (fk_Content_ID_Content)
+    REFERENCES Content (ID_Content)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE Has ADD CONSTRAINT FK_Has_1
+    FOREIGN KEY (fk_Playlist_ID_Playlist)
+    REFERENCES Playlist (ID_Playlist)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE Has ADD CONSTRAINT FK_Has_2
+    FOREIGN KEY (fk_Content_ID_Content)
+    REFERENCES Content (ID_Content)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE Has ADD CONSTRAINT FK_Has_1
+    FOREIGN KEY (fk_PodCast_fk_Content_ID_Content)
+    REFERENCES PodCast (fk_Content_ID_Content)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE Has ADD CONSTRAINT FK_Has_2
+    FOREIGN KEY (fk_Guest_ID_Guest)
+    REFERENCES Guest (ID_Guest)
+    ON DELETE SET NULL;
