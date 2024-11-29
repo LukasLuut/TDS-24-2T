@@ -1,6 +1,5 @@
 class Transporter{
-    private name:string;
-    private cnpj:string;
+  
     private clients:Client[]=[]
     private vehicles:Vehicle[]=[]
     private invoices:Invoice[]=[]
@@ -9,18 +8,14 @@ class Transporter{
 
     
     public constructor(
-        name:string,
-        cnpj:string,
-    ){
-        this.name=name,
-        this.cnpj=cnpj
-    }
+        private name:string,
+        private cnpj:string,
+    ){}
 
 
     public getName(){
         return this.name
     }
-
 
     public getCnpj(){
         return this.cnpj
@@ -68,7 +63,6 @@ class Order{
     
     public constructor(
         private client: Client,
-        private clientType:Client,
         private driver:Driver,
         private vehicle:Vehicle,
         private load:Load,
@@ -77,10 +71,6 @@ class Order{
         private invoice:Invoice
     ){
         
-    }
-
-    getClient() {
-        this.client
     }
 }
 
@@ -113,7 +103,7 @@ class Client{
 
     public setCnpj(cnpj:string){
         this.cnpj=cnpj
-        }
+    }
 
     public getCnpj(){
         this.cnpj
@@ -137,27 +127,41 @@ class ClientContractor extends Client{
 
 
 class ClientSporadic extends Client{
-    discout:number=0
-
+    constructor(
+        private discout:number=0,
+        name:string,
+        cnpj:string,
+        adress:string
+        
+    ){
+        super(name,cnpj,adress)
+    }
 }
 
 
-
 class Vehicle{
-    private plate:string=''
-    private model:string=''
-    private loadCapacity:number=0
-    private typeLoad:string=''
-    private status:boolean=false
+
+    constructor(
+    private plate:string,
+    private model:string,
+    private loadCapacity:number,
+    private typeLoad:string,
+    private status:boolean,
+    ){}
+
 
     public setPlate(plate:string){
         this.plate=plate
     }
 
     public getPlate(){
-        this.plate
+        return this.plate
     }
 
+
+    public getStatus(){
+        return this.status
+    }
 
     public setModel(model:string){
         this.model=model
@@ -186,7 +190,7 @@ class Load{
     private type:string,
     private route:Route,
     private boardingDate:Date,
-    private deliveryDate:Date,
+    private expectedDeliveryDate:Date,
 ){}
 }
 
@@ -213,6 +217,12 @@ class Route{
     private distance:string,
     private estimatedTime:Date,
 ){}
+
+
+    registerVehiclePerRoute(vehicle:Vehicle){
+        if(vehicle.getStatus()===true)
+        this.avaliableVehicle.push(vehicle)
+    }
 }
 
 
@@ -224,7 +234,7 @@ class Delivery{
     private load:Load,
     private vehicle:Vehicle,
     private driver:Driver,
-    private status:boolean,
+    private status:string,
     private observation:string,
 ){}
 }
@@ -247,20 +257,61 @@ class Invoice{
     }
 }
 
-
-let clientVitor= new ClientContractor (10,'Vitin Vida-Loka','4722221366544','rua dos boy')
-console.log(clientVitor)
+let empresa_1=new Transporter('Galeria304','789512378')
 
 
+let client_1= new ClientContractor (10,'Vitin Vida-Loka','4722221366544','rua dos boy')
+console.log(client_1)
 
+let carro_1=new Vehicle('SIO2314','Monza-Turbo',565,'litros',true)
+empresa_1.registerVehicle(carro_1)
 
+let motorista_1=new Driver('Vitória',789512378,'D','10 anos',carro_1)
 
+let rota_1=new Route('São Leopoldo','Porto Alegre','28km',new Date())
+rota_1.registerVehiclePerRoute(carro_1)
 
+let carga_1= new Load(20,30,'solido',rota_1,new Date(),new Date())
 
+let entrega_1=new Delivery(new Date(), client_1,carga_1,carro_1,motorista_1,'em processo','explodir no destino')
 
+let pedido_1=new Invoice(1,new Date(),client_1,199,'suas vidas')
+pedido_1.bordingLoad(carga_1)
+
+let ordem_1= new Order(client_1,motorista_1,carro_1,carga_1,rota_1,entrega_1,pedido_1)
 
 //////////////////////////////////////
 //////////////////////////////////////
 //////////////////////////////////////
+
+//////////////////////////////////////
+//////////////////////////////////////
+//////////////////////////////////////
+
+
+class Enterprise{
+   private employee:Employee[]=[]
+
+   payment(employee:Employee){
+    if(employee.getPosition()==='cashier'){
+        //realizar lógica de tipos de pagamentos
+    }
+   }
+
+}
+
+class Employee{
+
+    private paymentHistory:object[]=[]
+
+    constructor(
+    private name:string,
+    private position:string,
+    ){}
+
+    getPosition(){
+        return this.position
+    }
+}
 
 
