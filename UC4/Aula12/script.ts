@@ -288,13 +288,66 @@ let ordem_1= new Order(client_1,motorista_1,carro_1,carga_1,rota_1,entrega_1,ped
 //////////////////////////////////////
 //////////////////////////////////////
 
+//////////////////////////////////////
+//////////////////////////////////////
+//////////////////////////////////////
+
+//////////////////////////////////////
+//////////////////////////////////////
+//////////////////////////////////////
+
 
 class Enterprise{
-   private employee:Employee[]=[]
+    
+    private employee:Employee[]=[];
+    private paymentHistory:string[]=[];
 
-   payment(employee:Employee){
-    if(employee.getPosition()==='cashier'){
+    constructor(private name:string){}
+
+
+    getPaymentHistory(i?:number){
+        
+        if(i=0){i=1}
+       
+        else if(i===undefined){
+                return this.paymentHistory
+            }
+        else{
+                return this.paymentHistory[i-1]
+            }
+        }
+   
+   payment(employee:Hourly){
+
+    //PAGAMENTO HORISTA
+    if(employee.getType()==='hourly'){
+        
+        //busca as horas trabalhadas e multiplica pelo valor da hora
+        let payment:number=employee.getHours()*employee.getHourValue()
+        
+        //realiza o push no histórico de pagamentos do funcionário e empresa
+        employee.paymentHistory.push(
+            `Payment confirmed to ${employee.getName()}: R$${payment} at:${new Date()} referent to ${employee.getHours()} hours worked `
+        )
+
+        this.paymentHistory.push(
+            `Payment confirmed to ${employee.getName()}: R$${payment} at:${new Date()} referent to ${employee.getHours()} hours worked `
+        )
+    }
+
+    //PAGAMENTO ASSALARIADO
+    else if(employee.getType()==='salaried'){
         //realizar lógica de tipos de pagamentos
+    }
+
+    //PAGAMENTO COMISSIONADO
+    else if(employee.getType()==='commissioned'){
+        //realizar lógica de tipos de pagamentos
+    }
+
+
+    else{
+        console.log('Type invalid')
     }
    }
 
@@ -302,16 +355,86 @@ class Enterprise{
 
 class Employee{
 
-    private paymentHistory:object[]=[]
-
+    public paymentHistory:string[]=[]
+    
     constructor(
-    private name:string,
-    private position:string,
+        private name:string,
+        private type:string
     ){}
 
-    getPosition(){
-        return this.position
+    getType(){
+        return this.type
+    }
+
+    getName(){
+        return this.name
+    }
+
+    getPaymentHistory(i?:number){
+
+        if(i=0){i=1}
+       
+        else if(i===undefined){
+                return this.paymentHistory
+            }
+        else{
+                return this.paymentHistory[i-1]
+            }
+        }
+
+    
+}
+
+class Hourly extends Employee{
+
+    private hoursWorked:number=0
+    private hourValue:number=0
+    constructor(
+         name:string,
+         type:string,         
+         hourValue:number
+    ){
+        super(name,type)
+    }
+
+    sumHours(hour:number){
+        this.hoursWorked+=hour
+    }
+
+    setHours(hour:number){
+        this.hoursWorked=hour
+    }
+
+    getHours(){
+        return this.hoursWorked
+    }
+
+    getHourValue(){
+        return this.hourValue
+    }
+
+    setHourValue(value:number){
+        this.hourValue=value
     }
 }
 
 
+class Salaried extends Employee{
+    
+    constructor(
+        name:string, 
+        type:string,
+        private salary:number
+    ){
+        super(name,type)
+    }
+
+    getSalary(){
+        return this.salary
+    }
+
+    setSalary(value:number){
+        this.salary=value
+    }
+
+}
