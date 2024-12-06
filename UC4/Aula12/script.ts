@@ -31,9 +31,9 @@ class Transporter{
         if(i===undefined){
             return this.orders
         }
-        else{
-            return this.orders[i]
-        }
+            else{
+                return this.orders[i]
+            }
     }
 
 
@@ -261,7 +261,7 @@ let empresa_1=new Transporter('Galeria304','789512378')
 
 
 let client_1= new ClientContractor (10,'Vitin Vida-Loka','4722221366544','rua dos boy')
-console.log(client_1)
+
 
 let carro_1=new Vehicle('SIO2314','Monza-Turbo',565,'litros',true)
 empresa_1.registerVehicle(carro_1)
@@ -316,42 +316,66 @@ class Enterprise{
                 return this.paymentHistory[i-1]
             }
         }
-   
-   payment(employee:Hourly){
+    
+    addEmployee(employee:Employee){
+        this.employee.push(employee)
+    }
+
+    getEmployee(i?:number){
+        if(i===undefined){
+            return this.employee
+        }
+            else{
+                return this.employee[i]
+            }
+    }
+
+    payment(employee:Employee){
 
     //PAGAMENTO HORISTA
     if(employee.getType()==='hourly'){
         
         //busca as horas trabalhadas e multiplica pelo valor da hora
-        let payment:number=employee.getHours()*employee.getHourValue()
-        
+        let payment:number=employee.getHours()*employee.getHourValue()        
         //realiza o push no histórico de pagamentos do funcionário e empresa
         employee.paymentHistory.push(
-            `Payment confirmed to ${employee.getName()}: R$${payment} at:${new Date()} referent to ${employee.getHours()} hours worked `
+            `Payment confirmed to ${employee.getName()}: R$${payment} at:${new Date()}`
         )
-
         this.paymentHistory.push(
-            `Payment confirmed to ${employee.getName()}: R$${payment} at:${new Date()} referent to ${employee.getHours()} hours worked `
+            `Payment confirmed to ${employee.getName()}: R$${payment} at:${new Date()}`
         )
     }
 
-    //PAGAMENTO ASSALARIADO
-    else if(employee.getType()==='salaried'){
-        //realizar lógica de tipos de pagamentos
-    }
+        //PAGAMENTO ASSALARIADO
+        else if(employee.getType()==='salaried'){
+        
+            //realiza o push no histórico de pagamentos do funcionário e empresa
+            employee.paymentHistory.push(
+                `Payment confirmed to ${employee.getName()}: R$${employee.getSalary()} at:${new Date()}`
+            )
+            this.paymentHistory.push(
+                `Payment confirmed to ${employee.getName()}: R$${employee.getSalary()} at:${new Date()}`
+            )
+        }
 
-    //PAGAMENTO COMISSIONADO
-    else if(employee.getType()==='commissioned'){
-        //realizar lógica de tipos de pagamentos
-    }
+            //PAGAMENTO COMISSIONADO
+            else if(employee.getType()==='comissioned'){
 
-
-    else{
-        console.log('Type invalid')
-    }
-   }
-
+                //realiza o push no histórico de pagamentos do funcionário e empresa
+                employee.paymentHistory.push(
+                    `Payment confirmed to ${employee.getName()}: R$${employee.getSalary()} at:${new Date()}`
+                )
+                this.paymentHistory.push(
+                    `Payment confirmed to ${employee.getName()}: R$${employee.getSalary()} at:${new Date()}`
+                )
+                }
+                
+                    else{
+                        console.log('Type invalid')
+                        }
+        }
 }
+
 
 class Employee{
 
@@ -372,16 +396,20 @@ class Employee{
 
     getPaymentHistory(i?:number){
 
-        if(i=0){i=1}
+        
        
-        else if(i===undefined){
+            if(i===undefined){
                 return this.paymentHistory
             }
-        else{
-                return this.paymentHistory[i-1]
-            }
+                else{
+                    return this.paymentHistory[i-1]
+                }
         }
 
+        //realizado polimorfismo nas classes filhas
+    getHourValue(){return 0}
+    getHours(){return 0 }
+    getSalary(){return 0}
     
 }
 
@@ -394,7 +422,9 @@ class Hourly extends Employee{
          type:string,         
          hourValue:number
     ){
+        
         super(name,type)
+        this.hourValue=hourValue
     }
 
     sumHours(hour:number){
@@ -421,6 +451,7 @@ class Hourly extends Employee{
 
 class Salaried extends Employee{
     
+    
     constructor(
         name:string, 
         type:string,
@@ -436,5 +467,95 @@ class Salaried extends Employee{
     setSalary(value:number){
         this.salary=value
     }
+
+}
+
+
+class Commissioned extends Employee{
+
+    private goalBeat:boolean=false
+
+    constructor(
+        name:string, 
+        type:string,
+        private salary:number
+    ){
+        super(name,type)
+    }
+    
+    getSalary(){
+        if(this.goalBeat){
+        return this.salary+(this.salary*.10)
+    }
+        else{
+        return this.salary
+        }
+    }
+}
+
+let galeria304=new Enterprise('Galeria304')
+
+let vitorHorista= new Hourly('Vitão','hourly',23)
+
+let arthirAssalariado= new Salaried('Arthur','salaried',6500)
+
+let luutComissionado= new Commissioned('Luut','comissioned',8000)
+
+galeria304.addEmployee(vitorHorista)
+galeria304.addEmployee(arthirAssalariado)
+galeria304.addEmployee(luutComissionado)
+
+vitorHorista.sumHours(10)
+galeria304.payment(vitorHorista)
+galeria304.payment(arthirAssalariado)
+galeria304.payment(luutComissionado)
+
+console.log(luutComissionado.getPaymentHistory())
+
+
+//////////////////////////////////////
+//////////////////////////////////////
+//////////////////////////////////////
+
+//////////////////////////////////////
+//////////////////////////////////////
+//////////////////////////////////////
+
+//////////////////////////////////////
+//////////////////////////////////////
+//////////////////////////////////////
+
+//////////////////////////////////////
+//////////////////////////////////////
+//////////////////////////////////////
+
+
+class GasStation{
+ 
+
+    constructor(
+        name:string, 
+        cnpj:string
+    ){}
+}
+
+class Client_{
+    constructor(
+        name:string
+    ){}
+}
+
+class CommomClient extends Client{
+
+}
+
+class FleetClient extends Client{
+    
+}
+
+class Invoice_{
+    constructor(
+        client:Client
+    ){}
 
 }
