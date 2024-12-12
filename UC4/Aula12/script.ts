@@ -346,6 +346,7 @@ class Enterprise{
         )
     }
 
+
         //PAGAMENTO ASSALARIADO
         else if(employee.getType()==='salaried'){
         
@@ -357,6 +358,7 @@ class Enterprise{
                 `Payment confirmed to ${employee.getName()}: R$${employee.getSalary()} at:${new Date()}`
             )
         }
+
 
             //PAGAMENTO COMISSIONADO
             else if(employee.getType()==='comissioned'){
@@ -545,17 +547,27 @@ class Client_{
     ){}
 }
 
-class CommomClient extends Client{
-
+class CommomClient extends Client_{
+    discount:number=0
 }
 
-class FleetClient extends Client{
-    
+class FleetClient extends Client_{
+    discount:number=10
 }
 
 class Invoice_{
     constructor(
-        client:Client
+        client:Client_
     ){}
-
 }
+
+class Car{
+    model:string=''
+    mark:string=''
+    tankLiter:number=0
+
+    
+}
+
+
+let client1=new CommomClient()

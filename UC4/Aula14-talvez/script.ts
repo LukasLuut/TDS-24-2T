@@ -47,4 +47,5 @@ cria uma classe especializada baseada em uma classe genérica (herança)
 Generalização: 
 cria uma classe genérica para ser utilizada em outras classes
 
+
 */
