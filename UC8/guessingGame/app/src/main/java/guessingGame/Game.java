@@ -9,5 +9,10 @@ package guessingGame;
  * @author Aluno
  */
 public class Game {
+    private int numberToGuess;//Armazena um número aleatorio gerado pelo sistema
+    public Game(){
+    this.numberToGuess=(int)(Math.random()*100)+1;
+    }
+    public void start(){};
     
 }
