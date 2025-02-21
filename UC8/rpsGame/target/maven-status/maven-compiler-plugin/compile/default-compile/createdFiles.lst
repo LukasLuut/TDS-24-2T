@@ -1,3 +1,4 @@
 com\mycompany\rpsgame\Validator.class
-com\mycompany\rpsgame\Player.class
 com\mycompany\rpsgame\RpsGame.class
+com\mycompany\rpsgame\Player.class
+com\mycompany\rpsgame\VitorNPC.class

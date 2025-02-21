@@ -13,8 +13,17 @@ public class RpsGame {
     public static void main(String[] args) {
        
         
-       Validator comparador=new Validator();
-       System.out.println(comparador.escNpc());
+       VitorNPC npc=new VitorNPC();
+       System.out.println(npc.escNpc());
+       
+       Player arthur = new Player();
+       
+       Validator comparador=new Validator(npc.getEscNpc(), arthur.getEscPlayer());
+       
+       comparador.mensagem();
+       
     }
+    
+    
     
 }

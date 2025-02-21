@@ -10,33 +10,27 @@ package com.mycompany.rpsgame;
  */
 public class Validator {
   
-    private final int npc=(int) (Math.random()*3)+1;
-     public String npcString;
-        
-    public String escNpc(){
- 
-    switch(npc){
-        case 1 -> {  
-            npcString="O NPC escolheu Pedra";
-            return npcString;
-            }
-        case 2 -> {
-            npcString="O NPC escolheu Papel";
-            return npcString;
-            }
-            
-        case 3 -> {
-            npcString="O NPC escolheu Tesoura";
-            return npcString;
-            }
-            
-        default -> {
-            npcString="ERRO DEFAULT";
-            return npcString;
-            }
-    }
+   //ele deve pegar a escolha do NPC e a escolhado Player e comparar 
     
-    }
+ private int escPlayer;
+ private int escNpc;
+    
+ public Validator(int valor1, int valor2){ 
+ escPlayer=valor1;
+ escNpc=valor2; 
+ };
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ public void mensagem(){
+ System.out.println("Escolha do jogador: "+escPlayer +"\nEscolha do NPC: " + escNpc);
+ }
+    
+    
 }
 
 

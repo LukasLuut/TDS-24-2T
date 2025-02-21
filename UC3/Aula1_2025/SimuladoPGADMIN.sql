@@ -112,3 +112,4 @@ where fk_casa = 1
 select * from view_personagens_grifinoria
 
 create index idx_personagem on personagem(nome_personagem)
+

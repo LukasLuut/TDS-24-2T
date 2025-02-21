@@ -1,6 +1,6 @@
 /*Escreva o programa do chapéu seletor que recebe a aluna e imprima no console a
 sua casa de Hogwarts:*/
-
+/*
 let aluna=prompt("Digite o nome da aluna?")
 console.log(
     'Hermione\nAna\nLuna\nNarcisa'
@@ -25,7 +25,7 @@ switch(aluna.toLocaleLowerCase){
 
 ● Tiver concluído o ensino médio;
 ● Tiver 18 anos ou mais;
-● Não estiver cursando outra faculdade;*/
+● Não estiver cursando outra faculdade;*//*
 
 let aluno={idade:0,ensinoM:'',outroCurso:''}
 
