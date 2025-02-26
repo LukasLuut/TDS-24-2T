@@ -40,6 +40,7 @@ Quem é consierado o pai do banco de dados relacional?
 ▬ Ted Codd
 
 
+
 Explique a diferença de um Banco de Dados, um Sistema Gerenciador de Banco de Dados e um sistema de Banco de Dados:
 
 ▬ Banco de Dados: é o local onde os dados são guardados
