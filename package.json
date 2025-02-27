@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "sucrase": "^3.35.0",
     "tsc": "^2.0.4"
   }
 }
