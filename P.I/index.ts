@@ -1,6 +1,6 @@
 class User{
     private name:string;
-    private birth:Date; // Não está bem implementado ---corrigido, era só declarar direito
+    private birth:Date; 
     private address: Address;
     private cnpj_cpf: string;
     private email: string=''
@@ -54,10 +54,12 @@ class User{
     //o provedor terá vários serviços que é capaz de realizar aqui
     //todos terão categorias préviamente disponíveis pelo sistema, que ajuda na filtragem de serviços
     //pode ser filtrado por serviço ou por servidor, (servidor faz mais sentido)
+    provider_agenda:Agenda;
     available_service:Array<Service>;
  
      constructor(name:string,birth:Date,address:Address,cnpj_cpf:string,){
          super(name,birth,address,cnpj_cpf)
+         this.provider_agenda=new Agenda;
      }
      
      //escolhe uma categoria existente no sistema e adiciona detalhes, preço e duração do serviço
@@ -67,6 +69,12 @@ class User{
          service.setDescription(description)
  
      }
+
+     budget(service:Service){
+        //Gerar lógica de orçamento e agendamento de um serviço
+        //semelhante ao método a cima, verificar se existe necessidade dos 2
+
+     };
  
  }
  
@@ -116,7 +124,9 @@ class User{
     private type: Category;
     private price: number;
     private description_service: string;
-    private start_service:Date;
+    private duration: number;//EM HORAS
+    private start_date:Date;
+    private end_date:Date;
     private status: 'cancelada'|'pendente' | 'em andamento' | 'concluída';
     private workload: string;//está sendo gerado um prazo de trabalho com método
     
@@ -160,6 +170,12 @@ public getDescription(){
 public setDescription(value: string) {
          this.description_service = value;
      }
+public getDuration(): number {
+        return this.duration;
+    }
+public setDuration(value: number) {
+        this.duration = value;
+    }
  
 public getWorkload(){
          return `prazo: ${this.workload}`;
@@ -171,7 +187,7 @@ public setWorkload(value: number) {
      //serve para formatar o texto de data, utilizado na criação de Ordem de Serviço 
 public formateDate(data:Date){
         return data.toLocaleString('pt-BR', {
-      weekday: 'short', year: 'numeric', month: 'long', day: 'numeric',
+      weekday: 'long', year: 'numeric', month: 'short', day: 'numeric',
       hour: 'numeric', minute: 'numeric'
     })
     }
@@ -186,7 +202,7 @@ public getStatus(){
 }
 public startService(){
         this.status = 'em andamento';
-        this.start_service = new Date();
+        this.start_date = new Date();
     }
 
 public finishService(){
@@ -246,15 +262,73 @@ public setCep(value: string) {
         this.cep = value;
     }
  };
+
+
+class Agenda{//talvez mudar para agenda
+
+    //aqui cria um array de objetos
+     agenda:{service: Service, startDate: Date, endDate: Date;}[]=[];
+
+    //aqui o algorítmo deve tentar realizar o agendamento
+    public schedule(service:Service,startDate:Date){ 
+        let endDate = new Date(startDate.getTime() + service.getDuration() * 3600000)//calcula a duração em horas
+        
+        //ira comparar a data com todas as datas ocupadas no array agenda
+        for (let scheduling of this.agenda) {
+            if (this.conflictCheck(scheduling, startDate, endDate)) {//usa o conflict que faz a verificação das datas
+                return 'Horário indisponível para este serviço.'; //se já existir data, retorna horário indisponível
+
+                //aqui posso implementar uma lógica que retorna quais serviços estão utilizando essa data e opção para reagendar o serviço novo ou o já agendado
+            }
+        }
+
+        // Adiciona o agendamento na agenda
+        this.agenda.push({ service, startDate, endDate });
+        return 'Agendamento realizado com sucesso!';
+
+    }
+
+    //privado porque só será usado dentro do método agenda()
+    private conflictCheck(existingSchedule: { service: Service, startDate: Date, endDate: Date }, startDate: Date, endDate: Date): boolean {
+        return (startDate < existingSchedule.endDate && existingSchedule.startDate < endDate);//deve retornar true se já existir um agendamento dentro da duração do novo serviço
+    }
+
+    //exibe todos os agendamentos
+    public listAppointments(){
+        if (this.agenda.length === 0) {
+            console.log('Não há agendamentos.');
+            ;
+        }
+        else{
+        console.log('Agendamentos:');
+        this.agenda.forEach((scheduling, index) => {
+            console.log(`${index + 1}. ${scheduling.service.getType()} - Início: ${scheduling.startDate.toLocaleString()} - Fim: ${scheduling.endDate.toLocaleString()}`);
+        })};
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
  
  
  
  let enderecoDoArthur=new Address('Elsa Dauber Steimer',67,'Scharlau','São Leopoldo','93120520')
  let marcenaria=new Category('Marcenaria','realiza trabalhos com madeira');
- let Arthur=new Provider('Arthur Soltol',new Date('2002-1-3'),enderecoDoArthur,'03304699082');
+ let arthur=new Provider('Arthur Soltol',new Date('2002-1-3'),enderecoDoArthur,'03304699082');
  let Luut=new Client('Luut',new Date('1994-5-3'),enderecoDoArthur,'03304699082','Lukasluut@gmail.com')
  let corteMadeira=new Service(marcenaria,Luut);
- 
+
+let agenda=new Agenda()
+agenda.listAppointments()
+
  
  
 //Isso é a criação de um orçamento, vai para o array de orçamentos do cliente
@@ -265,3 +339,5 @@ Luut.service_budget[0].setWorkload(4)
 console.log(Luut.service_budget[0].getWorkload())
 Luut.service_budget[0].setWorkload(4)
 console.log(Luut.service_budget[0].getWorkload())
+
+arthur.provider_agenda.listAppointments()
