@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid';//Importado para gerar ID de forma mais segura e eficiente 
+
 class User{
     private name:string;
     private birth:Date; 
@@ -55,11 +57,12 @@ class User{
     //todos terão categorias préviamente disponíveis pelo sistema, que ajuda na filtragem de serviços
     //pode ser filtrado por serviço ou por servidor, (servidor faz mais sentido)
     provider_agenda:Agenda;
-    available_service:Array<Service>;
+    available_service:ServiceCatalog;
  
      constructor(name:string,birth:Date,address:Address,cnpj_cpf:string,){
          super(name,birth,address,cnpj_cpf)
          this.provider_agenda=new Agenda;
+         this.available_service=new ServiceCatalog;
      }
      
      //escolhe uma categoria existente no sistema e adiciona detalhes, preço e duração do serviço
@@ -118,8 +121,10 @@ class User{
  
  //o serviço em sí, o coração da aplicação
  class Service{
+    private id: String;
     private firstContact:string;
     private client:Client;
+    private provider: Provider;
     private service_address:Address;
     private type: Category;
     private price: number;
@@ -137,12 +142,26 @@ class User{
      this.type=type;
      this.firstContact=this.formateDate(new Date());
      this.status='pendente';
+     this.id = nanoid(5);
      
      } 
+
+public getId(){
+        return this.id;
+    }
+public setId(value: String) {
+        this.id = value;
+    }
  
 public getClient(){
         return this.client
      }
+public getProvider() {
+        return this.provider;
+    }
+public setProvider(value: Provider) {
+        this.provider = value;
+    }
 public getService_address(){
     return this.service_address
      }
@@ -211,6 +230,12 @@ public finishService(){
 public cancelService(){
         this.status = 'cancelada';
     }
+public displayService(): void {
+        console.log(`ID: ${this.id}`);
+        console.log(`Name: ${this.getProvider()}`);
+        console.log(`Description: ${this.description_service}`);
+        console.log(`Price: ${this.price}`);
+    }
  }
  
  
@@ -264,7 +289,7 @@ public setCep(value: string) {
  };
 
 
-class Agenda{//talvez mudar para agenda
+class Agenda{
 
     //aqui cria um array de objetos
      agenda:{service: Service, startDate: Date, endDate: Date;}[]=[];
@@ -288,7 +313,7 @@ class Agenda{//talvez mudar para agenda
 
     }
 
-    //privado porque só será usado dentro do método agenda()
+    //privado porque só será usado dentro do método schedule()
     private conflictCheck(existingSchedule: { service: Service, startDate: Date, endDate: Date }, startDate: Date, endDate: Date): boolean {
         return (startDate < existingSchedule.endDate && existingSchedule.startDate < endDate);//deve retornar true se já existir um agendamento dentro da duração do novo serviço
     }
@@ -308,28 +333,57 @@ class Agenda{//talvez mudar para agenda
     
 }
 
+class ServiceCatalog {
+    private services: Service[] = [];
+  
+    // Adicionar um serviço ao catálogo
+    addService(service: Service){
+      this.services.push(service);
+    }
+  
+    // deve remover um serviço do catálogo pelo ID
+    removeService(id: string){
+        //o findIndex() ele retorna o índice do primeiro elemento que atende à condição
+      let index = this.services.findIndex(service => service.getId() === id);
+      //findIndex retorna -1 se não encontrar nenhum elemento que corresponda à condição
+      if (index === -1) {
+         console.log("Esse serviço não existe!");
+        }
+      else{
+        this.services.splice(index, 1);
+        console.log("Serviço removido com sucesso!");
+        }
+    }
+
+    getServiceById(id: string) {//aqui deve buscar um serviço pelo ID
+        //o .find() deve buscar o primeiro elemento que satisfaça uma condição especificada
+      return this.services.find(service => service.getId() === id); 
+    }
+  
+    // Listar todos os serviços
+    listServices() {
+      if (this.services.length === 0) {
+        console.log("Nenhum serviço disponível no catálogo.");
+        return;
+      }
+      console.log("Catálogo de Serviços:");
+      this.services.forEach(service => service.displayService());
+    }
+  
+    // Buscar serviços por categoria
+    getServicesByCategory(type: Category){
+        // O filter() filtra os elementos de um array com base em uma condição especificada.
+        //ele retorna um Array com os elementos que correspondem as condições da pesquisa 
+      return this.services.filter(service => service.getType() === type);
+    }
+  }
 
 
-
-
-
-
-
-
-
- 
- 
- 
  let enderecoDoArthur=new Address('Elsa Dauber Steimer',67,'Scharlau','São Leopoldo','93120520')
  let marcenaria=new Category('Marcenaria','realiza trabalhos com madeira');
  let arthur=new Provider('Arthur Soltol',new Date('2002-1-3'),enderecoDoArthur,'03304699082');
  let Luut=new Client('Luut',new Date('1994-5-3'),enderecoDoArthur,'03304699082','Lukasluut@gmail.com')
  let corteMadeira=new Service(marcenaria,Luut);
-
-let agenda=new Agenda()
-agenda.listAppointments()
-
- 
  
 //Isso é a criação de um orçamento, vai para o array de orçamentos do cliente
  Luut.budget('Preciso concertar a pia do meu banheiro que está vazando',marcenaria,Luut)
@@ -339,5 +393,6 @@ Luut.service_budget[0].setWorkload(4)
 console.log(Luut.service_budget[0].getWorkload())
 Luut.service_budget[0].setWorkload(4)
 console.log(Luut.service_budget[0].getWorkload())
-
 arthur.provider_agenda.listAppointments()
+//falta implementar como o Provedor de serviço recebe a O.S. e lida com ela para retornar ao cliente
+//o método no Provedor existe mas está em branco ainda. 
