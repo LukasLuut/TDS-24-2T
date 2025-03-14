@@ -1,0 +1,4 @@
+com\mycompany\exerciciopagamento\Paypal.class
+com\mycompany\exerciciopagamento\ExercicioPagamento.class
+com\mycompany\exerciciopagamento\CartaoCredito.class
+com\mycompany\exerciciopagamento\Pagamento.class
