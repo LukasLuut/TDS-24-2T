@@ -1,0 +1,10 @@
+com\mycompany\todotask\view\Bem_vindo$2.class
+com\mycompany\todotask\database\ConnectionSQL.class
+com\mycompany\todotask\model\Task.class
+com\mycompany\todotask\view\Lista$1.class
+com\mycompany\todotask\view\Lista.class
+com\mycompany\todotask\dao\TaskDAO.class
+com\mycompany\todotask\view\Bem_vindo$1.class
+com\mycompany\todotask\view\Bem_vindo.class
+com\mycompany\todotask\controller\TaskController.class
+com\mycompany\todotask\ToDoTask.class
