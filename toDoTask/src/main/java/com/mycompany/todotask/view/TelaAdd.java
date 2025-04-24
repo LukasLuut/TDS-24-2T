@@ -4,20 +4,27 @@
  */
 package com.mycompany.todotask.view;
 
+import com.mycompany.todotask.controller.TaskController;
+import com.mycompany.todotask.model.Task;
+
 /**
  *
  * @author Luut
  */
 public class TelaAdd extends javax.swing.JFrame {
-
+    Lista tela;
     /**
      * Creates new form TelaAdd
      */
-    public TelaAdd() {
+    public TelaAdd(Lista tela) {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.tela=tela;
     }
-
+public TelaAdd() {
+        initComponents();
+        this.setLocationRelativeTo(null);
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,117 +36,134 @@ public class TelaAdd extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        titleFieldAdd = new javax.swing.JTextField();
+        deadlineFieldAdd = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        descriptionFieldAdd = new javax.swing.JTextArea();
+        taskBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Luut\\Documents\\NetBeansProjects\\toDoTask\\src\\main\\java\\com\\mycompany\\img\\roket.gif")); // NOI18N
-
-        jTextField1.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField1.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("  jTextField1");
-        jTextField1.setBorder(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        titleFieldAdd.setBackground(new java.awt.Color(102, 102, 102));
+        titleFieldAdd.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
+        titleFieldAdd.setForeground(new java.awt.Color(255, 255, 255));
+        titleFieldAdd.setText(" ");
+        titleFieldAdd.setBorder(null);
+        titleFieldAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                titleFieldAddActionPerformed(evt);
             }
         });
 
-        jTextField2.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField2.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField2.setText("  12.09.2025");
-        jTextField2.setBorder(null);
+        deadlineFieldAdd.setBackground(new java.awt.Color(102, 102, 102));
+        deadlineFieldAdd.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
+        deadlineFieldAdd.setForeground(new java.awt.Color(255, 255, 255));
+        deadlineFieldAdd.setBorder(null);
+        deadlineFieldAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deadlineFieldAddActionPerformed(evt);
+            }
+        });
 
-        jTextArea1.setBackground(new java.awt.Color(102, 102, 102));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setRows(5);
-        jTextArea1.setText("asdasdasdasd");
-        jTextArea1.setBorder(null);
-        jScrollPane1.setViewportView(jTextArea1);
+        descriptionFieldAdd.setBackground(new java.awt.Color(102, 102, 102));
+        descriptionFieldAdd.setColumns(20);
+        descriptionFieldAdd.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
+        descriptionFieldAdd.setForeground(new java.awt.Color(255, 255, 255));
+        descriptionFieldAdd.setRows(5);
+        descriptionFieldAdd.setBorder(null);
+        jScrollPane1.setViewportView(descriptionFieldAdd);
 
-        jButton1.setBackground(new java.awt.Color(255, 102, 51));
-        jButton1.setFont(new java.awt.Font("Impact", 0, 28)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("+Task");
-        jButton1.setBorder(null);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        taskBtn.setBackground(new java.awt.Color(255, 102, 51));
+        taskBtn.setFont(new java.awt.Font("Impact", 0, 28)); // NOI18N
+        taskBtn.setForeground(new java.awt.Color(255, 255, 255));
+        taskBtn.setText("+Task");
+        taskBtn.setBorder(null);
+        taskBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        taskBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taskBtnActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Impact", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Deadline");
 
         jLabel3.setFont(new java.awt.Font("Impact", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Title");
 
         jLabel4.setFont(new java.awt.Font("Impact", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Description");
 
         jLabel5.setFont(new java.awt.Font("Impact", 1, 90)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Just DO it!");
+
+        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Aluno\\Documents\\NetBeansProjects\\toDoTask\\src\\main\\java\\com\\mycompany\\img\\roket.gif")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(titleFieldAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(6, 6, 6)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(deadlineFieldAdd)
+                                        .addGap(71, 71, 71))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(taskBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5))
+                        .addContainerGap())))
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                    .addComponent(titleFieldAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deadlineFieldAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(34, 34, 34)
+                .addComponent(taskBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1))
         );
 
@@ -151,15 +175,31 @@ public class TelaAdd extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void titleFieldAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleFieldAddActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_titleFieldAddActionPerformed
+
+    private void deadlineFieldAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deadlineFieldAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deadlineFieldAddActionPerformed
+
+    private void taskBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taskBtnActionPerformed
+        TaskController.registerTask(new Task(
+                titleFieldAdd.getText(),
+                descriptionFieldAdd.getText(),
+                deadlineFieldAdd.getText()));
+        this.dispose();
+        tela.updateTable();
+               // TODO add your handling code here:
+    }//GEN-LAST:event_taskBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,16 +237,17 @@ public class TelaAdd extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField deadlineFieldAdd;
+    private javax.swing.JTextArea descriptionFieldAdd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton taskBtn;
+    private javax.swing.JTextField titleFieldAdd;
     // End of variables declaration//GEN-END:variables
 }

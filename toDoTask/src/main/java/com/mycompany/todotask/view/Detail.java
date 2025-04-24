@@ -77,7 +77,6 @@ public class Detail extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblimg.setIcon(new javax.swing.ImageIcon("C:\\Users\\Luut\\Documents\\NetBeansProjects\\toDoTask\\src\\main\\java\\com\\mycompany\\img\\nike.gif")); // NOI18N
         lblimg.setText("jLabel1");
 
         descriptionEditField.setBackground(new java.awt.Color(102, 102, 102));
@@ -85,29 +84,26 @@ public class Detail extends javax.swing.JFrame {
         descriptionEditField.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         descriptionEditField.setForeground(new java.awt.Color(255, 255, 255));
         descriptionEditField.setRows(5);
-        descriptionEditField.setBorder(null);
+        descriptionEditField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane1.setViewportView(descriptionEditField);
 
         titleEditField.setBackground(new java.awt.Color(102, 102, 102));
         titleEditField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         titleEditField.setForeground(new java.awt.Color(255, 255, 255));
-        titleEditField.setBorder(null);
+        titleEditField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         deadlineEditField.setBackground(new java.awt.Color(102, 102, 102));
         deadlineEditField.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         deadlineEditField.setForeground(new java.awt.Color(255, 255, 255));
-        deadlineEditField.setBorder(null);
+        deadlineEditField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Title:");
 
         jLabel2.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Deadline:");
 
         jLabel3.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Description:");
 
         btnSave.setBackground(new java.awt.Color(51, 153, 0));

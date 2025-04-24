@@ -37,7 +37,7 @@ public class TaskController {
         //pega o índice 0(id) da coluna selecionada e coloca numa variável id
         int id = (int) table.getValueAt(selectLine, 0);
 
-//retorna a task selecionada
+        //retorna a task selecionada
         return TaskDAO.searchTask(id);
     }
 
@@ -56,6 +56,9 @@ public class TaskController {
     TaskDAO.changeStatus(id, "complete");
     }
     
+    public static void registerTask(Task task){
+        TaskDAO.registerTask(task);
+    }
     
     
     
@@ -86,4 +89,6 @@ public class TaskController {
             }
         });
     }
+
+    
 }

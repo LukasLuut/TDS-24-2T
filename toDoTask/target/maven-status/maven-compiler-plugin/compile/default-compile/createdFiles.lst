@@ -4,6 +4,7 @@ com\mycompany\todotask\model\Task.class
 com\mycompany\todotask\view\Detail$2.class
 com\mycompany\todotask\view\Lista$1.class
 com\mycompany\todotask\view\Detail$1.class
+com\mycompany\todotask\view\TelaAdd$3.class
 com\mycompany\todotask\view\TelaAdd$1.class
 com\mycompany\todotask\dao\TaskDAO.class
 com\mycompany\todotask\view\Detail$3.class
@@ -17,6 +18,7 @@ com\mycompany\todotask\view\Lista$5.class
 com\mycompany\todotask\view\Bem_vindo$1.class
 com\mycompany\todotask\view\Bem_vindo.class
 com\mycompany\todotask\view\Lista$2.class
+com\mycompany\todotask\view\TelaAdd$4.class
 com\mycompany\todotask\controller\TaskController.class
 com\mycompany\todotask\ToDoTask.class
 com\mycompany\todotask\view\TelaAdd.class

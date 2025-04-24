@@ -50,8 +50,9 @@ public class TaskDAO {
 
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Task task = new Task(rs.getString("title"), rs.getString("description"), rs.getString("deadline"), rs.getString("status")); 
+                Task task = new Task(rs.getString("title"), rs.getString("description"), rs.getString("deadline")); 
                 task.setId(rs.getInt("id"));
+                task.setStatus(rs.getString("status"));
                 tasks.add(task);
             }
         } catch (SQLException e) {
@@ -70,7 +71,7 @@ public class TaskDAO {
         ResultSet rs = stmt.executeQuery();
 
         if (rs.next()) {
-            Task task = new Task(rs.getString("title"), rs.getString("description"), rs.getString("deadline"), rs.getString("status"));
+            Task task = new Task(rs.getString("title"), rs.getString("description"), rs.getString("deadline"));
             task.setId(rs.getInt("id"));
             return task;
         }
@@ -87,7 +88,7 @@ public class TaskDAO {
     try (Connection conn = ConnectionSQL.conect(); 
          PreparedStatement stmt = conn.prepareStatement(sql)) {
         
-                stmt.setString(1, newStatus);
+        stmt.setString(1, newStatus);
         stmt.setInt(2, id);
         return stmt.executeUpdate() > 0;
     } catch (SQLException e) {

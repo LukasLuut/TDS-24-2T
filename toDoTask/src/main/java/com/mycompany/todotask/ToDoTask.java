@@ -16,7 +16,7 @@ public class ToDoTask {
 
     public static void main(String[] args) {
         ConnectionSQL.conect();
-        Task tarefinha= new Task("alalo", "alele","15.02.1990","complete" );
+        Task tarefinha= new Task("alalo", "alele","15.02.1990");
 //        
         //TaskDAO.registerTask(tarefinha);
 //        TaskDAO.registerTask(tarefinha);

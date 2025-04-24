@@ -15,11 +15,11 @@ public class Task {
     String deadline;
     String status;
 
-    public Task(String titulo, String descricao, String data_vencimento, String status) {
+    public Task(String titulo, String descricao, String data_vencimento) {
         this.title = titulo;
         this.description = descricao;
         this.deadline = data_vencimento;
-        this.status = status;
+        this.status = "pending";
     }
     
     
