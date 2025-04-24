@@ -16,12 +16,12 @@ public class ToDoTask {
 
     public static void main(String[] args) {
         ConnectionSQL.conect();
-        Task tarefinha= new Task("alalo", "alele","15.02.1990","pending" );
-        
-        TaskDAO.registerTask(tarefinha);
-        TaskDAO.registerTask(tarefinha);
-        TaskDAO.registerTask(tarefinha);
-        //TaskDAO.atualizarTarefa(1, "Bombardilo Crocodilo", "tralalero", "10/05/2002");
-        
+        Task tarefinha= new Task("alalo", "alele","15.02.1990","complete" );
+//        
+        //TaskDAO.registerTask(tarefinha);
+//        TaskDAO.registerTask(tarefinha);
+//        TaskDAO.registerTask(tarefinha);
+        TaskDAO.saveTask(1, "Crocodilo", "tralalero", "10/05/2002", "complete");
+        //TaskDAO.deletTask(3);
     }
 }

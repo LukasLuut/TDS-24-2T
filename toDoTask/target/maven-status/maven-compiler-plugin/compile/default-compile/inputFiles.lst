@@ -1,7 +1,9 @@
-C:\Users\Aluno\Documents\NetBeansProjects\toDoTask\src\main\java\com\mycompany\todotask\view\Bem_vindo.java
-C:\Users\Aluno\Documents\NetBeansProjects\toDoTask\src\main\java\com\mycompany\todotask\view\Lista.java
-C:\Users\Aluno\Documents\NetBeansProjects\toDoTask\src\main\java\com\mycompany\todotask\dao\TaskDAO.java
-C:\Users\Aluno\Documents\NetBeansProjects\toDoTask\src\main\java\com\mycompany\todotask\model\Task.java
-C:\Users\Aluno\Documents\NetBeansProjects\toDoTask\src\main\java\com\mycompany\todotask\controller\TaskController.java
-C:\Users\Aluno\Documents\NetBeansProjects\toDoTask\src\main\java\com\mycompany\todotask\database\ConnectionSQL.java
-C:\Users\Aluno\Documents\NetBeansProjects\toDoTask\src\main\java\com\mycompany\todotask\ToDoTask.java
+C:\Users\Luut\Documents\NetBeansProjects\toDoTask\src\main\java\com\mycompany\todotask\controller\TaskController.java
+C:\Users\Luut\Documents\NetBeansProjects\toDoTask\src\main\java\com\mycompany\todotask\dao\TaskDAO.java
+C:\Users\Luut\Documents\NetBeansProjects\toDoTask\src\main\java\com\mycompany\todotask\database\ConnectionSQL.java
+C:\Users\Luut\Documents\NetBeansProjects\toDoTask\src\main\java\com\mycompany\todotask\model\Task.java
+C:\Users\Luut\Documents\NetBeansProjects\toDoTask\src\main\java\com\mycompany\todotask\ToDoTask.java
+C:\Users\Luut\Documents\NetBeansProjects\toDoTask\src\main\java\com\mycompany\todotask\view\Bem_vindo.java
+C:\Users\Luut\Documents\NetBeansProjects\toDoTask\src\main\java\com\mycompany\todotask\view\Detail.java
+C:\Users\Luut\Documents\NetBeansProjects\toDoTask\src\main\java\com\mycompany\todotask\view\Lista.java
+C:\Users\Luut\Documents\NetBeansProjects\toDoTask\src\main\java\com\mycompany\todotask\view\TelaAdd.java
