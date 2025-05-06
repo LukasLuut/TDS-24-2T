@@ -17,7 +17,7 @@ import org.json.JSONObject;
 public class CadastroController {
     // Valida o formato do e-mail usando expressão regular (Regex)
 
-    public boolean emailValido(String email) {
+    public static boolean emailValido(String email) {
         String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
         return email.matches(regex);
     }
@@ -40,17 +40,7 @@ public class CadastroController {
         );
     }
 
-    public static void registrarUser(String email, String senha){
-        User user= new User(email, senha); 
-    UserDAO.registrarUsuario(user);
-    }
-    
-    public static void deletarUser(String email){
-    UserDAO.excluirUsuario(email);
-    }
-    
-    public static void atualizarSenha(String email, String novaSenha){
-    UserDAO.atualizarSenha(email, novaSenha);
-    }
+   
+   
     
 }

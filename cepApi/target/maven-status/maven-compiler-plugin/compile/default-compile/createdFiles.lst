@@ -2,12 +2,15 @@ com\mycompany\cepapi\view\CadastroForm$2.class
 com\mycompany\cepapi\CepApi.class
 com\mycompany\cepapi\controller\CadastroController.class
 com\mycompany\cepapi\model\User.class
+com\mycompany\cepapi\view\TelaLogin$4.class
 com\mycompany\cepapi\view\TelaLogin$2.class
 com\mycompany\cepapi\view\CadastroForm.class
 com\mycompany\cepapi\view\TelaLogin$1.class
 com\mycompany\cepapi\dao\UserDAO.class
+com\mycompany\cepapi\controller\UserController.class
 com\mycompany\cepapi\service\ViaCepService.class
 com\mycompany\cepapi\view\CadastroForm$1.class
 com\mycompany\cepapi\model\Endereco.class
 com\mycompany\cepapi\view\TelaLogin.class
 com\mycompany\cepapi\database\ConnectionSQL.class
+com\mycompany\cepapi\view\TelaLogin$3.class

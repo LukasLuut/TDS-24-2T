@@ -4,17 +4,22 @@
  */
 package com.mycompany.cepapi.view;
 
+import com.mycompany.cepapi.controller.CadastroController;
+import com.mycompany.cepapi.controller.UserController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Aluno
  */
 public class TelaLogin extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form TelaLogin
      */
     public TelaLogin() {
         initComponents();
+        
     }
 
     /**
@@ -43,6 +48,12 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Tela de Login");
 
+        emailField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailFieldActionPerformed(evt);
+            }
+        });
+
         senhaField.setText("jPasswordField1");
 
         jLabel2.setText("Email:");
@@ -52,6 +63,11 @@ public class TelaLogin extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(255, 204, 0));
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("Registrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         btnEntrar.setBackground(new java.awt.Color(0, 153, 0));
         btnEntrar.setText("Entrar");
@@ -120,8 +136,22 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // TODO add your handling code here:
+    if(UserController.validarLogin(emailField.getText(), new String(senhaField.getPassword()))){
+         new CadastroForm().setVisible(true);
+         this.dispose();
+    }else{JOptionPane.showMessageDialog(this, "Usuário Inválido!");}// TODO add your handling code here:
     }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
+ 
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailFieldActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+if(CadastroController.emailValido(emailField.getText())) {
+    UserController.registrarUser(emailField.getText(), new String(senhaField.getPassword()));
+}else{JOptionPane.showMessageDialog(this, "Digite um Email válido");}        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

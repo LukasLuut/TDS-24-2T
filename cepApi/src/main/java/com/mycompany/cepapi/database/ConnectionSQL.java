@@ -47,11 +47,11 @@ public class ConnectionSQL {
                 + "id INT AUTO_INCREMENT PRIMARY KEY, "
                 + "email VARCHAR(255) NOT NULL UNIQUE, "
                 + "senha VARCHAR(255) NOT NULL, "
-                + "CEP INT NOT NULL, "
-                + "rua VARCHAR(255) NOT NULL, "
-                + "bairro VARCHAR(255) NOT NULL, "
-                + "cidade VARCHAR(255) NOT NULL, "
-                + "estado VARCHAR(255) NOT NULL)";
+                + "CEP VARCHAR(10), "
+                + "rua VARCHAR(255), "
+                + "bairro VARCHAR(255), "
+                + "cidade VARCHAR(255), "
+                + "estado VARCHAR(255))";
         try (Statement stmt = connection.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException e) {

@@ -35,7 +35,7 @@ public class UserDAO {
     }
 }
     
-    public boolean validarLogin(User usuario) {
+    public static boolean validarLogin(User usuario) {
     String sql = "SELECT senha FROM usuarios WHERE email = ?";
 
     try (Connection conn = ConnectionSQL.conect(); 
