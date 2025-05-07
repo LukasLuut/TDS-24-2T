@@ -5,6 +5,7 @@
 package com.mycompany.cepapi.controller;
 
 import com.mycompany.cepapi.dao.UserDAO;
+import com.mycompany.cepapi.model.Endereco;
 import com.mycompany.cepapi.model.User;
 
 /**
@@ -31,6 +32,10 @@ public class UserController {
     public static boolean validarLogin(String email, String senha){
      User user=new User(email, senha);
     return UserDAO.validarLogin(user);     
+    }
+    
+    public static void registrarEndereco(Endereco endereco, String email){
+        
     }
     
     

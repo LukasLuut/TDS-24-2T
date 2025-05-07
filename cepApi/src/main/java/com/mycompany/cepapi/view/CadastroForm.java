@@ -6,6 +6,8 @@ package com.mycompany.cepapi.view;
 
 import com.mycompany.cepapi.controller.CadastroController;
 import com.mycompany.cepapi.model.Endereco;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,12 +15,50 @@ import javax.swing.JOptionPane;
  * @author Aluno
  */
 public class CadastroForm extends javax.swing.JFrame {
+    private String email;
  private CadastroController controller = new CadastroController();
+ ImageIcon icon = new ImageIcon("src/main/java/com/mycompany/cepapi/view/img/fundoGreen.jpg");
+    JLabel fundo = new JLabel(icon);
     /**
      * Creates new form CadastroForm
      */
-    public CadastroForm() {
+    public CadastroForm(String email) {
+         this.setVisible(true);
         initComponents();
+        icon.setImage(icon.getImage().getScaledInstance(this.getWidth(), this.getHeight(), 1));
+        this.setContentPane(fundo);
+        fundo.setLayout(null);
+        fundo.setIcon(icon);
+        fundo.add(txtRua);
+        fundo.add(txtBairro);
+        fundo.add(txtCidade);
+        fundo.add(txtEstado);
+        fundo.add(txtCep);
+        fundo.add(btnBusca);
+        fundo.add(btnCadastro);
+        fundo.add(vaultLabel);
+        fundo.add(vaultLabel1);
+        
+        this.email=email;
+    }
+    public CadastroForm() {
+        this.setVisible(true);
+        initComponents();
+        icon.setImage(icon.getImage().getScaledInstance(this.getWidth(), this.getHeight(), 1));
+        this.setContentPane(fundo);
+        fundo.setIcon(icon);
+        fundo.setLayout(null);
+        fundo.setIcon(icon);
+        fundo.add(txtRua);
+        fundo.add(txtBairro);
+        fundo.add(txtCidade);
+        fundo.add(txtEstado);
+        fundo.add(txtCep);
+        fundo.add(btnBusca);
+        fundo.add(btnCadastro);
+        fundo.add(vaultLabel);
+        fundo.add(vaultLabel1);
+        
     }
 
     /**
@@ -31,101 +71,120 @@ public class CadastroForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnBusca = new javax.swing.JButton();
         txtRua = new javax.swing.JTextField();
         txtCep = new javax.swing.JTextField();
         txtBairro = new javax.swing.JTextField();
         txtCidade = new javax.swing.JTextField();
         txtEstado = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        vaultLabel = new javax.swing.JLabel();
+        btnCadastro = new javax.swing.JButton();
+        vaultLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 204));
 
-        jButton1.setBackground(new java.awt.Color(51, 102, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("BUSCAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnBusca.setBackground(new java.awt.Color(0, 5, 0));
+        btnBusca.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
+        btnBusca.setForeground(new java.awt.Color(48, 245, 129));
+        btnBusca.setText("BUSCAR");
+        btnBusca.setBorder(null);
+        btnBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBuscaActionPerformed(evt);
             }
         });
 
-        txtRua.setBackground(new java.awt.Color(255, 255, 255));
-        txtRua.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txtRua.setForeground(new java.awt.Color(0, 0, 0));
+        txtRua.setBackground(new java.awt.Color(51, 51, 51));
+        txtRua.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        txtRua.setForeground(new java.awt.Color(48, 245, 129));
         txtRua.setText("Rua..");
 
-        txtCep.setBackground(new java.awt.Color(255, 255, 255));
-        txtCep.setForeground(new java.awt.Color(0, 0, 0));
+        txtCep.setBackground(new java.awt.Color(51, 51, 51));
+        txtCep.setForeground(new java.awt.Color(48, 245, 129));
         txtCep.setText("Digite seu CEP");
-
-        txtBairro.setBackground(new java.awt.Color(255, 255, 255));
-        txtBairro.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txtBairro.setForeground(new java.awt.Color(0, 0, 0));
-        txtBairro.setText("Bairro");
-
-        txtCidade.setBackground(new java.awt.Color(255, 255, 255));
-        txtCidade.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txtCidade.setForeground(new java.awt.Color(0, 0, 0));
-        txtCidade.setText("Cidade");
-
-        txtEstado.setBackground(new java.awt.Color(255, 255, 255));
-        txtEstado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txtEstado.setForeground(new java.awt.Color(0, 0, 0));
-        txtEstado.setText("Estado");
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Busca CEP do Luut");
-
-        jButton2.setBackground(new java.awt.Color(204, 0, 204));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton2.setText("Cadastrar endereço");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        txtCep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                txtCepActionPerformed(evt);
             }
         });
+
+        txtBairro.setBackground(new java.awt.Color(51, 51, 51));
+        txtBairro.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        txtBairro.setForeground(new java.awt.Color(48, 245, 129));
+        txtBairro.setText("Bairro");
+
+        txtCidade.setBackground(new java.awt.Color(51, 51, 51));
+        txtCidade.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        txtCidade.setForeground(new java.awt.Color(48, 245, 129));
+        txtCidade.setText("Cidade");
+
+        txtEstado.setBackground(new java.awt.Color(51, 51, 51));
+        txtEstado.setFont(new java.awt.Font("Monospaced", 0, 14)); // NOI18N
+        txtEstado.setForeground(new java.awt.Color(48, 245, 129));
+        txtEstado.setText("Estado");
+
+        vaultLabel.setFont(new java.awt.Font("Monospaced", 1, 48)); // NOI18N
+        vaultLabel.setForeground(new java.awt.Color(48, 245, 129));
+        vaultLabel.setText("Encontre");
+
+        btnCadastro.setBackground(new java.awt.Color(0, 5, 0));
+        btnCadastro.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
+        btnCadastro.setForeground(new java.awt.Color(48, 245, 129));
+        btnCadastro.setText("Cadastrar Vault");
+        btnCadastro.setBorder(null);
+        btnCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastroActionPerformed(evt);
+            }
+        });
+
+        vaultLabel1.setFont(new java.awt.Font("Monospaced", 1, 48)); // NOI18N
+        vaultLabel1.setForeground(new java.awt.Color(48, 245, 129));
+        vaultLabel1.setText("seu Vault");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCep))
-                .addGap(58, 58, 58))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
+                        .addGap(110, 110, 110)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(106, 106, 106)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(95, 95, 95)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(vaultLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(vaultLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(124, 124, 124)
+                        .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE)
+                .addComponent(vaultLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addComponent(vaultLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,11 +192,9 @@ public class CadastroForm extends javax.swing.JFrame {
                 .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(173, 173, 173))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,13 +205,16 @@ public class CadastroForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscaActionPerformed
    String cep = txtCep.getText().replace("-", "").trim();
 
         if (cep.isEmpty()) {
@@ -177,11 +237,15 @@ public class CadastroForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Erro ao buscar CEP: " + ex.getMessage());
         }
                // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnBuscaActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCadastroActionPerformed
+
+    private void txtCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCepActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,14 +283,15 @@ public class CadastroForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnBusca;
+    private javax.swing.JButton btnCadastro;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCep;
     private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtRua;
+    private javax.swing.JLabel vaultLabel;
+    private javax.swing.JLabel vaultLabel1;
     // End of variables declaration//GEN-END:variables
 }

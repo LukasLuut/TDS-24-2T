@@ -6,6 +6,8 @@ package com.mycompany.cepapi.view;
 
 import com.mycompany.cepapi.controller.CadastroController;
 import com.mycompany.cepapi.controller.UserController;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,12 +15,24 @@ import javax.swing.JOptionPane;
  * @author Aluno
  */
 public class TelaLogin extends javax.swing.JFrame {
-    
+    ImageIcon icon = new ImageIcon("src/main/java/com/mycompany/cepapi/view/img/pipBoy.jpg");
+    JLabel fundo = new JLabel(icon);
     /**
      * Creates new form TelaLogin
      */
     public TelaLogin() {
+        this.setVisible(true);
         initComponents();
+        icon.setImage(icon.getImage().getScaledInstance(this.getWidth(), this.getHeight(), 1));
+        this.setContentPane(fundo);
+        fundo.setLayout(null);
+        fundo.add(btnEntrar);
+        fundo.add(btnRegistrar);
+        fundo.add(emailLabel);
+        fundo.add(senhaLabel);
+        fundo.add(emailField);
+        fundo.add(senhaField);
+        fundo.setIcon(icon);
         
     }
 
@@ -32,44 +46,52 @@ public class TelaLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         emailField = new javax.swing.JTextField();
         senhaField = new javax.swing.JPasswordField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        emailLabel = new javax.swing.JLabel();
+        senhaLabel = new javax.swing.JLabel();
+        btnRegistrar = new javax.swing.JButton();
         btnEntrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 255));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 60)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Tela de Login");
-
+        emailField.setBackground(new java.awt.Color(102, 102, 102));
+        emailField.setFont(new java.awt.Font("Monospaced", 2, 18)); // NOI18N
+        emailField.setForeground(new java.awt.Color(48, 245, 129));
         emailField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailFieldActionPerformed(evt);
             }
         });
 
+        senhaField.setBackground(new java.awt.Color(102, 102, 102));
+        senhaField.setFont(new java.awt.Font("Segoe Script", 1, 14)); // NOI18N
+        senhaField.setForeground(new java.awt.Color(48, 245, 129));
         senhaField.setText("jPasswordField1");
 
-        jLabel2.setText("Email:");
+        emailLabel.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
+        emailLabel.setForeground(new java.awt.Color(48, 245, 129));
+        emailLabel.setText("Email");
 
-        jLabel3.setText("Senha:");
+        senhaLabel.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
+        senhaLabel.setForeground(new java.awt.Color(48, 245, 129));
+        senhaLabel.setText("Senha");
 
-        jButton1.setBackground(new java.awt.Color(255, 204, 0));
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Registrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrar.setBackground(new java.awt.Color(0, 5, 0));
+        btnRegistrar.setFont(new java.awt.Font("Monospaced", 1, 18)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(48, 245, 129));
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRegistrarActionPerformed(evt);
             }
         });
 
-        btnEntrar.setBackground(new java.awt.Color(0, 153, 0));
+        btnEntrar.setBackground(new java.awt.Color(0, 5, 0));
+        btnEntrar.setFont(new java.awt.Font("Monospaced", 1, 24)); // NOI18N
+        btnEntrar.setForeground(new java.awt.Color(48, 245, 129));
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,41 +104,36 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(emailField)
+                            .addComponent(senhaField, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(senhaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(emailField)
-                                .addComponent(senhaField))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(btnEntrar)
-                        .addGap(88, 88, 88)
-                        .addComponent(jButton1)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(jLabel2)
+                .addGap(50, 50, 50)
+                .addComponent(emailLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(senhaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(senhaField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(btnEntrar))
-                .addGap(118, 118, 118))
+                .addGap(48, 48, 48)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(458, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -137,7 +154,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
     if(UserController.validarLogin(emailField.getText(), new String(senhaField.getPassword()))){
-         new CadastroForm().setVisible(true);
+         new CadastroForm(emailField.getText()).setVisible(true);
          this.dispose();
     }else{JOptionPane.showMessageDialog(this, "Usuário Inválido!");}// TODO add your handling code here:
     }//GEN-LAST:event_btnEntrarActionPerformed
@@ -147,11 +164,13 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailFieldActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 if(CadastroController.emailValido(emailField.getText())) {
     UserController.registrarUser(emailField.getText(), new String(senhaField.getPassword()));
+    new CadastroForm().setVisible(true);
+    this.dispose();
 }else{JOptionPane.showMessageDialog(this, "Digite um Email válido");}        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,12 +209,11 @@ if(CadastroController.emailValido(emailField.getText())) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JTextField emailField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel emailLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField senhaField;
+    private javax.swing.JLabel senhaLabel;
     // End of variables declaration//GEN-END:variables
 }
