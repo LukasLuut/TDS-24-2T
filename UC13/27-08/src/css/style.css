@@ -24,3 +24,19 @@ button:hover{
     
 
 }
+#btnAtualizar{
+    background-color: olivedrab;
+}
+
+#btnDeletar{
+    background-color: orangered;
+}
+
+#btnAtualizar:hover{
+    background-color: rgb(71, 95, 23);
+}
+
+#btnDeletar:hover{
+    background-color: rgb(175, 47, 0);
+}
+
